@@ -1,189 +1,54 @@
-# 🚀 Portfólio Dev - Desenvolvedor Full Stack
+# 📋 Licença de Propriedade - Portfólio Pessoal
 
-Um portfólio moderno e elegante criado com as tecnologias mais recentes do mercado, demonstrando habilidades de desenvolvimento full stack com design atrativo e funcionalidades interativas.
+## 🏆 Propriedade Intelectual
 
-## ✨ Características
+**Este portfólio é propriedade exclusiva de Kauê Gomes.**
 
-- **Design Moderno**: Interface elegante com gradientes e animações suaves
-- **Totalmente Responsivo**: Otimizado para todos os dispositivos
-- **Modo Escuro/Claro**: Toggle automático com persistência local
-- **Animações Fluidas**: Framer Motion para transições suaves
-- **Performance Otimizada**: Next.js 14 com App Router
-- **TypeScript**: Type safety completo
-- **Tailwind CSS**: Estilização moderna e responsiva
-- **Componentes Reutilizáveis**: Arquitetura modular e escalável
+Todos os direitos autorais, marcas registradas e propriedade intelectual contidos neste projeto pertencem única e exclusivamente ao desenvolvedor Kauê Gomes.
 
-## 🛠️ Tecnologias Utilizadas
+## 📝 Detalhes do Proprietário
 
-### Frontend
-- **Next.js 14** - Framework React com App Router
-- **TypeScript** - Type safety e melhor DX
-- **Tailwind CSS** - Framework CSS utilitário
-- **Framer Motion** - Animações e transições
-- **React Icons** - Biblioteca de ícones
-- **Lucide React** - Ícones modernos
+- **Nome**:Francisco Kauê Gomes Sales
+- **Profissão**: Desenvolvedor Full Stack & Analista de Dados
+- **Email**: kauegomessales189@gmail.com
+- **Localização**: Fortaleza, CE - Brasil
 
-### Desenvolvimento
-- **ESLint** - Linting de código
-- **PostCSS** - Processamento CSS
-- **Autoprefixer** - Prefixos CSS automáticos
+## 🚫 Uso Restrito
 
-## 🚀 Como Executar
+Este portfólio foi desenvolvido para fins pessoais e profissionais do proprietário. Qualquer uso, reprodução, distribuição ou modificação deste código sem autorização expressa por escrito é estritamente proibido.
 
-### Pré-requisitos
-- Node.js 18+ 
-- npm ou yarn
+### O que NÃO é permitido:
 
-### Instalação
+- ❌ Copiar ou reproduzir o código
+- ❌ Usar como base para outros projetos
+- ❌ Modificar sem autorização
+- ❌ Distribuir ou vender
+- ❌ Fazer fork para uso comercial
+- ❌ Remover ou alterar esta licença
 
-1. **Clone o repositório**
-```bash
-git clone https://github.com/seu-usuario/portfolio-dev.git
-cd portfolio-dev
-```
+## ✅ Uso Permitido
 
-2. **Instale as dependências**
-```bash
-npm install
-# ou
-yarn install
-```
+- ✅ Visualizar o portfólio online
+- ✅ Entrar em contato para oportunidades profissionais
+- ✅ Compartilhar links do portfólio
+- ✅ Usar como referência para inspiração (sem cópia)
 
-3. **Execute em modo de desenvolvimento**
-```bash
-npm run dev
-# ou
-yarn dev
-```
+## 📞 Contato para Autorização
 
-4. **Acesse o projeto**
-Abra [http://localhost:3000](http://localhost:3000) no seu navegador.
+Se você deseja usar qualquer parte deste código ou tem interesse em colaboração, entre em contato:
 
-## 📁 Estrutura do Projeto
+- **Email**: kauegomessales189@gmail.com
+- **LinkedIn**: [Kauê Gomes](https://www.linkedin.com/in/kau%C3%AA-gomes-6b3433253/)
+- **GitHub**: [@Kaue-Gomes](https://github.com/Kaue-Gomes)
 
-```
-portfolio-dev/
-├── app/                    # App Router (Next.js 14)
-│   ├── globals.css        # Estilos globais
-│   ├── layout.tsx         # Layout principal
-│   └── page.tsx           # Página inicial
-├── components/            # Componentes React
-│   ├── ui/               # Componentes base (Button, Card)
-│   ├── sections/         # Seções da página
-│   ├── Navigation.tsx    # Navegação
-│   └── Footer.tsx        # Rodapé
-├── lib/                  # Utilitários
-│   └── utils.ts          # Funções auxiliares
-├── public/               # Arquivos estáticos
-└── package.json          # Dependências e scripts
-```
+## 🛡️ Proteção Legal
 
-## 🎨 Personalização
+Este projeto está protegido pelas leis de propriedade intelectual brasileiras e internacionais. Qualquer violação desta licença pode resultar em ações legais.
 
-### Cores e Tema
-As cores podem ser personalizadas no arquivo `tailwind.config.js`:
-
-```javascript
-colors: {
-  primary: {
-    50: '#f0f9ff',
-    // ... outras variações
-  },
-  dark: {
-    50: '#f8fafc',
-    // ... outras variações
-  }
-}
-```
-
-### Conteúdo
-Edite os componentes nas pastas `components/sections/` para personalizar:
-- Informações pessoais
-- Projetos
-- Habilidades
-- Experiência
-- Contatos
-
-### Configurações
-- **Metadados**: Edite `app/layout.tsx` para SEO
-- **Fontes**: Configure no `tailwind.config.js`
-- **Animações**: Personalize no `globals.css`
-
-## 📱 Seções do Portfólio
-
-### 1. Hero (Início)
-- Apresentação pessoal
-- Call-to-action buttons
-- Links para redes sociais
-
-### 2. Sobre
-- Informações pessoais
-- Estatísticas de experiência
-- Timeline de experiência profissional
-
-### 3. Habilidades
-- Tecnologias técnicas com níveis
-- Habilidades interpessoais
-- Categorização por área
-
-### 4. Projetos
-- Projetos em destaque
-- Grid de todos os projetos
-- Links para demos e código
-
-### 5. Contato
-- Formulário de contato
-- Informações de contato
-- Links para redes sociais
-
-## 🔧 Scripts Disponíveis
-
-```bash
-npm run dev      # Executa em modo desenvolvimento
-npm run build    # Build para produção
-npm run start    # Executa build de produção
-npm run lint     # Executa ESLint
-```
-
-## 📦 Deploy
-
-### Vercel (Recomendado)
-1. Conecte seu repositório ao Vercel
-2. Configure as variáveis de ambiente se necessário
-3. Deploy automático a cada push
-
-### Outras Plataformas
-- **Netlify**: Compatível com Next.js
-- **Railway**: Deploy simples
-- **AWS Amplify**: Para projetos empresariais
-
-## 🤝 Contribuindo
-
-1. Fork o projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
-## 📞 Suporte
-
-Se você tiver alguma dúvida ou sugestão, entre em contato:
-
-- **Email**: seu.email@exemplo.com
-- **LinkedIn**: [Seu Perfil](https://linkedin.com/in/seu-perfil)
-- **GitHub**: [@seu-usuario](https://github.com/seu-usuario)
-
-## 🙏 Agradecimentos
-
-- [Next.js](https://nextjs.org/) - Framework incrível
-- [Tailwind CSS](https://tailwindcss.com/) - CSS framework
-- [Framer Motion](https://www.framer.com/motion/) - Animações
-- [Lucide](https://lucide.dev/) - Ícones modernos
+## 📅 Data de Criação
 
 ---
 
-⭐ Se este projeto te ajudou, considere dar uma estrela no repositório!
+**© 2025  Kauê Gomes. Todos os direitos reservados.**
+
+*Esta licença é válida e aplicável a todo o conteúdo deste repositório, incluindo código, design, textos, imagens e qualquer outro material presente.*
