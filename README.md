@@ -9,7 +9,7 @@ Todos os direitos autorais, marcas registradas e propriedade intelectual contido
 ## 📝 Detalhes do Proprietário
 
 - **Nome**:Francisco Kauê Gomes Sales
-- **Profissão**: Desenvolvedor Full Stack & Analista de Dados
+- **Profissão**: Desenvolvedor Full Stack & Engenheiro de Dados
 - **Email**: kauegomessales189@gmail.com
 - **Localização**: Fortaleza, CE - Brasil
 

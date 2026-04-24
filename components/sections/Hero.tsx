@@ -106,7 +106,7 @@ const Hero = () => {
                 options={{
                   strings: [
                     'Desenvolvedor Full Stack',
-                    'Analista de Dados'
+                    'Engenheiro de Dados'
                   ],
                   autoStart: true,
                   loop: true,
@@ -125,7 +125,7 @@ const Hero = () => {
             className="max-w-3xl mx-auto text-lg sm:text-xl text-dark-600 dark:text-dark-400 leading-relaxed theme-slide"
           >
             Apaixonado por criar experiências digitais excepcionais e soluções inovadoras. 
-            Especializado em desenvolvimento web moderno e análise de dados com foco em performance, 
+            Especializado em desenvolvimento web moderno e engenharia de dados com foco em performance, 
             acessibilidade e insights baseados em dados.
           </motion.p>
 

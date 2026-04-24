@@ -62,7 +62,7 @@ const Navigation = () => {
               }}
               transition={{ duration: 0.6 }}
             >
-              <span className="text-white font-bold text-sm">D</span>
+              <span className="text-white font-bold text-sm">K</span>
             </motion.div>
             <motion.span 
               className="text-xl font-bold gradient-text"
@@ -70,7 +70,7 @@ const Navigation = () => {
                 textShadow: "0 0 10px rgba(59, 130, 246, 0.5)"
               }}
             >
-              DevPortfolio
+              kauegomes
             </motion.span>
           </motion.div>
 

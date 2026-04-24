@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Heart, ArrowUp } from 'lucide-react'
+import { ArrowUp } from 'lucide-react'
 import Button from '@/components/ui/Button'
 
 const Footer = () => {
@@ -31,9 +31,9 @@ const Footer = () => {
             >
               <div className="flex items-center space-x-2 mb-4">
                 <div className="w-8 h-8 bg-gradient-to-r from-primary-600 to-purple-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">D</span>
+                  <span className="text-white font-bold text-sm">K</span>
                 </div>
-                <span className="text-xl font-bold gradient-text">DevPortfolio</span>
+                <span className="text-xl font-bold gradient-text">kauegomes</span>
               </div>
               <p className="text-dark-600 dark:text-dark-300 max-w-md leading-relaxed">
                 Desenvolvedor full stack apaixonado por criar experiências digitais excepcionais 
@@ -96,9 +96,7 @@ const Footer = () => {
               viewport={{ once: true }}
               className="flex items-center space-x-2 text-dark-600 dark:text-dark-300"
             >
-              <span>© {currentYear} DevPortfolio. Feito com</span>
-              <Heart className="text-red-500 animate-pulse" size={16} />
-              <span>por Kauê Gomes</span>
+              <span>© {currentYear} kauegomes. Feito por Kauê Gomes</span>
             </motion.div>
 
             <motion.div

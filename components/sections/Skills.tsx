@@ -41,7 +41,7 @@ const Skills = () => {
       ]
     },
     {
-      title: 'Análise de Dados',
+      title: 'Engenharia de Dados',
       skills: [
         { name: 'Python', icon: SiPython, level: 80, color: '#3776AB' },
         { name: 'Pandas', icon: SiPandas, level: 75, color: '#150458' },

@@ -280,7 +280,7 @@ const Contact = () => {
                 </div>
                 <div className="flex justify-between">
                   <span>Oportunidades Full-time:</span>
-                  <span className="font-semibold text-primary-600">Aberto</span>
+                  <span className="font-semibold text-red-500">Fechado</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Tempo de Resposta:</span>

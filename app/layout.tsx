@@ -7,23 +7,23 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   metadataBase: new URL('http://localhost:3000'),
-  title: 'Portfólio Dev - Desenvolvedor Full Stack & Analista de Dados',
-  description: 'Portfólio profissional de um desenvolvedor full stack e analista de dados apaixonado por criar soluções inovadoras e experiências digitais excepcionais.',
-  keywords: ['desenvolvedor', 'full stack', 'analista de dados', 'react', 'next.js', 'typescript', 'python', 'portfólio'],
+  title: 'kauegomes - Desenvolvedor Full Stack & Engenheiro de Dados',
+  description: 'Portfólio profissional de um desenvolvedor full stack e engenheiro de dados apaixonado por criar soluções inovadoras e experiências digitais excepcionais.',
+  keywords: ['desenvolvedor', 'full stack', 'engenheiro de dados', 'react', 'next.js', 'typescript', 'python', 'portfólio'],
   authors: [{ name: 'Kauê Gomes' }],
   creator: 'Kauê Gomes',
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
     url: 'https://seu-portfolio.com',
-    title: 'Portfólio Dev - Desenvolvedor Full Stack & Analista de Dados',
-    description: 'Portfólio profissional de um desenvolvedor full stack e analista de dados apaixonado por criar soluções inovadoras.',
-    siteName: 'Portfólio Dev',
+    title: 'kauegomes - Desenvolvedor Full Stack & Engenheiro de Dados',
+    description: 'Portfólio profissional de um desenvolvedor full stack e engenheiro de dados apaixonado por criar soluções inovadoras.',
+    siteName: 'kauegomes',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Portfólio Dev - Desenvolvedor Full Stack & Analista de Dados',
-    description: 'Portfólio profissional de um desenvolvedor full stack e analista de dados apaixonado por criar soluções inovadoras.',
+    title: 'kauegomes - Desenvolvedor Full Stack & Engenheiro de Dados',
+    description: 'Portfólio profissional de um desenvolvedor full stack e engenheiro de dados apaixonado por criar soluções inovadoras.',
   },
 }
 

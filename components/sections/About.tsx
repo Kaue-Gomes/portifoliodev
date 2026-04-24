@@ -14,6 +14,12 @@ const About = () => {
 
   const experiences = [
     {
+      period: 'Fevereiro 2026 - Atual',
+      title: 'Engenheiro de Dados',
+      company: 'Veolia',
+      description: 'Atuação como engenheiro de dados, responsável pelo desenvolvimento e manutenção de pipelines, modelagem e processamento de dados em larga escala.',
+    },
+    {
       period: '2024/07/07 - 2024/12/07',
       title: 'Estágio Desenvolvedor Júnior',
       company: 'Ultra Energia Brasil LTDA',
@@ -50,12 +56,12 @@ const About = () => {
           >
             <h3 className="text-2xl font-bold mb-6">Quem sou eu?</h3>
             <p className="text-dark-600 dark:text-dark-400 leading-relaxed">
-              Sou um desenvolvedor full stack e analista de dados com mais de 3 anos de experiência criando soluções digitais inovadoras. 
+              Sou um desenvolvedor full stack e engenheiro de dados com mais de 3 anos de experiência criando soluções digitais inovadoras. 
               Minha jornada na tecnologia começou com a curiosidade de entender como as coisas funcionam na web, 
               e hoje transformo essa paixão em experiências digitais excepcionais e insights valiosos.
             </p>
             <p className="text-dark-600 dark:text-dark-400 leading-relaxed">
-              Especializado em React, Next.js, Node.js, TypeScript e análise de dados, busco sempre as melhores práticas e 
+              Especializado em React, Next.js, Node.js, TypeScript e engenharia de dados, busco sempre as melhores práticas e 
               tecnologias mais recentes para entregar produtos de alta qualidade. Acredito que a tecnologia 
               deve ser acessível, performática, centrada no usuário e orientada por dados.
             </p>
