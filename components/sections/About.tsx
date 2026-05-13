@@ -1,165 +1,137 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { Calendar, MapPin, Briefcase, GraduationCap, Award, Users } from 'lucide-react'
-import Card from '@/components/ui/Card'
+import { MapPin } from 'lucide-react'
 
-const About = () => {
-  const stats = [
-    { icon: Briefcase, value: '3+', label: 'Anos de Experiência' },
-    { icon: Award, value: '50+', label: 'Projetos Concluídos' },
-    { icon: Users, value: '20+', label: 'Clientes Satisfeitos' },
-    { icon: GraduationCap, value: '100%', label: 'Comprometimento' },
-  ]
+const stats = [
+  { value: '3+', label: 'anos de experiência' },
+  { value: '2', label: 'empresas' },
+  { value: '6', label: 'projetos no GitHub' },
+  { value: 'Fortaleza', label: 'CE, Brasil' },
+]
 
-  const experiences = [
-    {
-      period: 'Fevereiro 2026 - Atual',
-      title: 'Engenheiro de Dados',
-      company: 'Veolia',
-      description: 'Atuação como engenheiro de dados, responsável pelo desenvolvimento e manutenção de pipelines, modelagem e processamento de dados em larga escala.',
-    },
-    {
-      period: '2024/07/07 - 2024/12/07',
-      title: 'Estágio Desenvolvedor Júnior',
-      company: 'Ultra Energia Brasil LTDA',
-      description: 'Desenvolvimento de features aplicações web e manutenção de aplicações web.',
-    },
-  ]
+const timeline = [
+  {
+    period: '2026 — atual',
+    title: 'Engenheiro de Dados',
+    company: 'Veolia',
+    impact:
+      'Pipelines e modelagem de dados em escala corporativa para decisões operacionais.',
+  },
+  {
+    period: '2024',
+    title: 'Estágio — Dev Júnior',
+    company: 'Ultra Energia Brasil',
+    impact:
+      'Features e manutenção em aplicações web internas para operações da empresa.',
+  },
+]
 
+export default function About() {
   return (
-    <section id="about" className="py-20 bg-gradient-to-b from-white to-dark-50 dark:from-dark-900 dark:to-dark-800">
+    <section
+      id="about"
+      className="section-padding bg-[color:var(--surface)] border-t border-mutedfg/10"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center max-w-2xl mx-auto"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-            Sobre <span className="gradient-text">Mim</span>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 tracking-tight">
+            Sobre <span className="gradient-text">mim</span>
           </h2>
-          <p className="text-lg text-dark-600 dark:text-dark-400 max-w-2xl mx-auto">
-            Desenvolvedor apaixonado por tecnologia e inovação, sempre em busca de novos desafios e aprendizado contínuo.
+          <p className="text-lg text-mutedfg mb-12">
+            Full stack com forte lado de dados — produto na web e informação virando valor.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-          {/* Personal Info */}
+        <div className="grid lg:grid-cols-[minmax(0,55%)_minmax(0,45%)] gap-10 lg:gap-14 items-start">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -16 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.55 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="space-y-8"
           >
-            <h3 className="text-2xl font-bold mb-6">Quem sou eu?</h3>
-            <p className="text-dark-600 dark:text-dark-400 leading-relaxed">
-              Sou um desenvolvedor full stack e engenheiro de dados com mais de 3 anos de experiência criando soluções digitais inovadoras. 
-              Minha jornada na tecnologia começou com a curiosidade de entender como as coisas funcionam na web, 
-              e hoje transformo essa paixão em experiências digitais excepcionais e insights valiosos.
-            </p>
-            <p className="text-dark-600 dark:text-dark-400 leading-relaxed">
-              Especializado em React, Next.js, Node.js, TypeScript e engenharia de dados, busco sempre as melhores práticas e 
-              tecnologias mais recentes para entregar produtos de alta qualidade. Acredito que a tecnologia 
-              deve ser acessível, performática, centrada no usuário e orientada por dados.
-            </p>
+            <div className="space-y-4 text-mutedfg leading-relaxed max-w-xl">
+              <p>
+                Atuo entre desenvolvimento web e engenharia de dados: APIs, interfaces e fluxos
+                que sustentam decisões com dados confiáveis.
+              </p>
+              <p>
+                Na Veolia foco em dados operacionais e pipelines; antes, na Ultra Energia, em
+                entrega contínua de features web.
+              </p>
+              <p className="text-[color:var(--text)]">
+                Comunicação clara com stakeholders e priorização pragmática fazem parte do meu
+                dia a dia — sem métricas mascaradas no portfólio.
+              </p>
+            </div>
 
-            {/* Personal Details */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6">
-              <div className="flex items-center space-x-3">
-                <Calendar className="text-primary-600" size={20} />
-                <span className="text-dark-600 dark:text-dark-400">18 anos</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <MapPin className="text-primary-600" size={20} />
-                <span className="text-dark-600 dark:text-dark-400">Fortaleza, - CE</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Briefcase className="text-primary-600" size={20} />
-                <span className="text-dark-600 dark:text-dark-400">Full Stack</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <GraduationCap className="text-primary-600" size={20} />
-                <span className="text-dark-600 dark:text-dark-400">Análise e Desenvolvimento de Sistemas</span>
-              </div>
+            <div className="timeline border-l-[color:color-mix(in_srgb,var(--muted)_35%,transparent)]">
+              {timeline.map((row) => (
+                <div key={row.company + row.period} className="timeline-item">
+                  <p className="text-xs uppercase tracking-wide text-mutedfg">{row.period}</p>
+                  <p className="font-display font-bold text-[color:var(--text)] mt-1">
+                    {row.company}
+                  </p>
+                  <p className="text-sm font-medium text-mutedfg">{row.title}</p>
+                  <p className="mt-2 text-sm text-mutedfg">{row.impact}</p>
+                </div>
+              ))}
             </div>
           </motion.div>
 
-          {/* Stats */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 16 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.55 }}
             viewport={{ once: true }}
-            className="grid grid-cols-2 gap-6"
+            className="flex flex-col gap-8"
           >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.05 }}
-                className="text-center"
-              >
-                <Card variant="elevated" className="p-6">
-                  <stat.icon className="text-primary-600 mx-auto mb-3" size={32} />
-                  <div className="text-3xl font-bold text-dark-900 dark:text-white mb-1">
-                    {stat.value}
+            <div className="relative mx-auto w-full max-w-md">
+              <div className="aspect-square overflow-hidden rounded-2xl border border-mutedfg/15 bg-[color:var(--bg)] transition-colors duration-300 hover:border-[color:var(--accent)]">
+                <Image
+                  src="https://github.com/Kaue-Gomes.png"
+                  alt="Kauê Gomes — foto de perfil"
+                  width={640}
+                  height={640}
+                  className="h-full w-full object-cover"
+                  priority
+                  unoptimized
+                />
+              </div>
+              <div className="mt-4 flex items-center justify-center gap-2 text-mutedfg text-sm">
+                <MapPin size={18} className="text-[color:var(--accent)] shrink-0" aria-hidden />
+                Fortaleza, CE — Brasil
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-6">
+              {stats.map((s, i) => (
+                <motion.div
+                  key={s.label}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: i * 0.06 }}
+                  viewport={{ once: true }}
+                  className="rounded-xl border border-mutedfg/15 bg-[color:var(--bg)] p-6 text-center transition-all duration-300 hover:border-[color:var(--accent)]"
+                >
+                  <div className="font-display text-2xl sm:text-3xl font-bold text-[color:var(--text)]">
+                    {s.value}
                   </div>
-                  <div className="text-sm text-dark-600 dark:text-dark-400">
-                    {stat.label}
-                  </div>
-                </Card>
-              </motion.div>
-            ))}
+                  <div className="mt-1 text-xs sm:text-sm text-mutedfg capitalize">{s.label}</div>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         </div>
-
-        {/* Experience Timeline */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <h3 className="text-2xl font-bold text-center mb-12">Experiência Profissional</h3>
-          <div className="space-y-8">
-            {experiences.map((exp, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                viewport={{ once: true }}
-                className="relative"
-              >
-                <Card variant="glass" className="p-6">
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-                    <div>
-                      <h4 className="text-xl font-semibold text-dark-900 dark:text-white mb-1">
-                        {exp.title}
-                      </h4>
-                      <p className="text-primary-600 font-medium">{exp.company}</p>
-                    </div>
-                    <span className="text-sm text-dark-500 dark:text-dark-400 mt-2 sm:mt-0">
-                      {exp.period}
-                    </span>
-                  </div>
-                  <p className="text-dark-600 dark:text-dark-400 leading-relaxed">
-                    {exp.description}
-                  </p>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   )
 }
-
-export default About

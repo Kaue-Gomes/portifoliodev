@@ -18,29 +18,29 @@ interface Credential {
   description: string
 }
 
-const CredentialsModal = ({ isOpen, onClose }: CredentialsModalProps) => {
+export default function CredentialsModal({ isOpen, onClose }: CredentialsModalProps) {
   const [copiedItem, setCopiedItem] = useState<string | null>(null)
-  const [showPasswords, setShowPasswords] = useState<{ [key: string]: boolean }>({})
+  const [showPasswords, setShowPasswords] = useState<Record<string, boolean>>({})
 
   const credentials: Credential[] = [
     {
       role: 'Dono',
       email: 'admin@exemplo.com',
       password: '123',
-      description: 'Acesso completo ao sistema com todas as permissões administrativas'
+      description: 'Acesso completo ao sistema com permissões administrativas.',
     },
     {
       role: 'Vendedor',
       email: 'joao.silva@exemplo.com',
       password: '123',
-      description: 'Acesso para vendedores com permissões de vendas e clientes'
+      description: 'Fluxos de vendas e cadastro de clientes.',
     },
     {
       role: 'Administrador',
       email: 'joao.silva@exemplo.com',
       password: '123',
-      description: 'Acesso administrativo para gestão de usuários e configurações'
-    }
+      description: 'Gestão de usuários e parâmetros do sistema.',
+    },
   ]
 
   const copyToClipboard = async (text: string, item: string) => {
@@ -48,16 +48,13 @@ const CredentialsModal = ({ isOpen, onClose }: CredentialsModalProps) => {
       await navigator.clipboard.writeText(text)
       setCopiedItem(item)
       setTimeout(() => setCopiedItem(null), 2000)
-    } catch (err) {
-      console.error('Erro ao copiar:', err)
+    } catch {
+      /* noop — clipboard pode falhar em contextos não seguros */
     }
   }
 
   const togglePasswordVisibility = (role: string) => {
-    setShowPasswords(prev => ({
-      ...prev,
-      [role]: !prev[role]
-    }))
+    setShowPasswords((prev) => ({ ...prev, [role]: !prev[role] }))
   }
 
   return (
@@ -67,122 +64,122 @@ const CredentialsModal = ({ isOpen, onClose }: CredentialsModalProps) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
           onClick={onClose}
+          role="presentation"
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            initial={{ opacity: 0, scale: 0.96, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="w-full max-w-4xl max-h-[90vh] overflow-y-auto"
+            exit={{ opacity: 0, scale: 0.96, y: 16 }}
+            transition={{ type: 'spring', damping: 26, stiffness: 320 }}
+            className="max-h-[90vh] w-full max-w-4xl overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
-            <Card variant="elevated" className="p-0 overflow-hidden">
-              {/* Header */}
-              <div className="bg-gradient-to-r from-primary-600 to-purple-600 p-6 text-white">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h2 className="text-2xl font-bold mb-2">Credenciais de Acesso</h2>
-                    <p className="text-primary-100">
-                      Use estas credenciais para acessar o sistema de Gestão para Concessionárias
-                    </p>
-                  </div>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={onClose}
-                    className="text-white hover:bg-white/20 p-2"
-                  >
-                    <X size={24} />
-                  </Button>
+            <Card variant="elevated" className="overflow-hidden p-0">
+              <div className="flex items-start justify-between gap-4 bg-[color:var(--accent)] p-6 text-white">
+                <div>
+                  <h2 className="font-display text-2xl font-bold mb-2">Credenciais de demo</h2>
+                  <p className="text-sm text-white/90">
+                    MyGestor — use apenas para explorar o fluxo na demonstração.
+                  </p>
                 </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  type="button"
+                  onClick={onClose}
+                  className="text-white hover:bg-white/15 shrink-0 border border-white/25"
+                  aria-label="Fechar"
+                >
+                  <X size={22} aria-hidden />
+                </Button>
               </div>
 
-              {/* Content */}
-              <div className="p-6">
-                <div className="grid gap-6">
+              <div className="p-6 space-y-6">
+                <div className="grid gap-5">
                   {credentials.map((cred, index) => (
                     <motion.div
                       key={cred.role}
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ opacity: 0, y: 12 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      className="border border-dark-200 dark:border-dark-700 rounded-lg p-4 bg-gradient-to-r from-dark-50 to-white dark:from-dark-800 dark:to-dark-900"
+                      transition={{ delay: index * 0.06 }}
+                      className="rounded-xl border border-mutedfg/15 bg-[color:var(--bg)] p-5"
                     >
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="w-10 h-10 bg-gradient-to-r from-primary-500 to-purple-500 rounded-full flex items-center justify-center">
-                          <User size={20} className="text-white" />
+                      <div className="flex items-start gap-3 mb-4">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[color:var(--accent)] text-white">
+                          <User size={20} aria-hidden />
                         </div>
                         <div>
-                          <h3 className="text-lg font-bold text-dark-900 dark:text-white">
+                          <h3 className="font-display text-lg font-bold text-[color:var(--text)]">
                             {cred.role}
                           </h3>
-                          <p className="text-sm text-dark-600 dark:text-dark-400">
-                            {cred.description}
-                          </p>
+                          <p className="text-sm text-mutedfg">{cred.description}</p>
                         </div>
                       </div>
 
-                      <div className="grid md:grid-cols-2 gap-4">
-                        {/* Email */}
+                      <div className="grid gap-4 md:grid-cols-2">
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-dark-700 dark:text-dark-300">
+                          <label className="text-xs font-medium uppercase tracking-wide text-mutedfg">
                             Email
                           </label>
                           <div className="flex items-center gap-2">
-                            <div className="flex-1 p-3 bg-white dark:bg-dark-800 border border-dark-200 dark:border-dark-700 rounded-lg font-mono text-sm">
+                            <div className="flex-1 rounded-lg border border-mutedfg/20 bg-[color:var(--surface)] px-3 py-2 font-mono text-sm text-[color:var(--text)]">
                               {cred.email}
                             </div>
                             <Button
                               variant="outline"
                               size="sm"
+                              type="button"
                               onClick={() => copyToClipboard(cred.email, `${cred.role}-email`)}
-                              className="px-3"
+                              aria-label="Copiar email"
                             >
                               {copiedItem === `${cred.role}-email` ? (
-                                <Check size={16} className="text-green-600" />
+                                <Check size={16} className="text-green-600" aria-hidden />
                               ) : (
-                                <Copy size={16} />
+                                <Copy size={16} aria-hidden />
                               )}
                             </Button>
                           </div>
                         </div>
 
-                        {/* Password */}
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-dark-700 dark:text-dark-300">
+                          <label className="text-xs font-medium uppercase tracking-wide text-mutedfg">
                             Senha
                           </label>
-                          <div className="flex items-center gap-2">
-                            <div className="flex-1 p-3 bg-white dark:bg-dark-800 border border-dark-200 dark:border-dark-700 rounded-lg font-mono text-sm flex items-center gap-2">
-                              <Lock size={14} className="text-dark-400" />
-                              <span>
+                          <div className="flex flex-wrap items-center gap-2">
+                            <div className="flex min-w-0 flex-1 items-center gap-2 rounded-lg border border-mutedfg/20 bg-[color:var(--surface)] px-3 py-2 font-mono text-sm text-[color:var(--text)]">
+                              <Lock size={14} className="text-mutedfg shrink-0" aria-hidden />
+                              <span className="truncate">
                                 {showPasswords[cred.role] ? cred.password : '••••••'}
                               </span>
                             </div>
                             <Button
                               variant="outline"
                               size="sm"
+                              type="button"
                               onClick={() => togglePasswordVisibility(cred.role)}
-                              className="px-3"
+                              aria-label={showPasswords[cred.role] ? 'Ocultar senha' : 'Mostrar senha'}
                             >
                               {showPasswords[cred.role] ? (
-                                <EyeOff size={16} />
+                                <EyeOff size={16} aria-hidden />
                               ) : (
-                                <Eye size={16} />
+                                <Eye size={16} aria-hidden />
                               )}
                             </Button>
                             <Button
                               variant="outline"
                               size="sm"
-                              onClick={() => copyToClipboard(cred.password, `${cred.role}-password`)}
-                              className="px-3"
+                              type="button"
+                              onClick={() =>
+                                copyToClipboard(cred.password, `${cred.role}-password`)
+                              }
+                              aria-label="Copiar senha"
                             >
                               {copiedItem === `${cred.role}-password` ? (
-                                <Check size={16} className="text-green-600" />
+                                <Check size={16} className="text-green-600" aria-hidden />
                               ) : (
-                                <Copy size={16} />
+                                <Copy size={16} aria-hidden />
                               )}
                             </Button>
                           </div>
@@ -192,26 +189,16 @@ const CredentialsModal = ({ isOpen, onClose }: CredentialsModalProps) => {
                   ))}
                 </div>
 
-                {/* Footer */}
-                <div className="mt-6 p-4 bg-primary-50 dark:bg-primary-900/20 rounded-lg border border-primary-200 dark:border-primary-800">
-                  <div className="flex items-start gap-3">
-                    <div className="w-6 h-6 bg-primary-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-white text-xs font-bold">!</span>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-primary-900 dark:text-primary-100 mb-1">
-                        Informação Importante
-                      </h4>
-                      <p className="text-sm text-primary-700 dark:text-primary-300">
-                        Estas são credenciais de demonstração. Use-as apenas para testar o sistema. 
-                        Em um ambiente de produção, certifique-se de usar credenciais seguras e únicas.
-                      </p>
-                    </div>
-                  </div>
+                <div className="rounded-xl border border-mutedfg/15 bg-[color:var(--surface)] p-4 text-sm text-mutedfg">
+                  <p className="font-semibold text-[color:var(--text)] mb-1">Somente demonstração</p>
+                  <p>
+                    Credenciais fictícias para testes do ambiente exposto. Em produção use políticas de
+                    senha e MFA adequadas.
+                  </p>
                 </div>
 
-                <div className="flex justify-end mt-6">
-                  <Button onClick={onClose} size="lg">
+                <div className="flex justify-end">
+                  <Button type="button" onClick={onClose} size="lg" variant="primary">
                     Entendi
                   </Button>
                 </div>
@@ -223,5 +210,3 @@ const CredentialsModal = ({ isOpen, onClose }: CredentialsModalProps) => {
     </AnimatePresence>
   )
 }
-
-export default CredentialsModal

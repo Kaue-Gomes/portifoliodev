@@ -1,65 +1,54 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react'
+import { Mail, MapPin, Send } from 'lucide-react'
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
-// Removido import do EmailJS - usando API route
 
-const Contact = () => {
+type SubmitUiStatus = 'idle' | 'sending' | 'sent' | 'error'
+
+export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
   })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [submitUi, setSubmitUi] = useState<SubmitUiStatus>('idle')
 
-  // Timer para remover mensagem de sucesso após 5 segundos
   useEffect(() => {
-    if (submitStatus === 'success') {
-      const timer = setTimeout(() => {
-        setSubmitStatus('idle')
-      }, 5000)
+    if (submitUi !== 'sent') return
+    const timer = setTimeout(() => setSubmitUi('idle'), 6000)
+    return () => clearTimeout(timer)
+  }, [submitUi])
 
-      return () => clearTimeout(timer)
-    }
-  }, [submitStatus])
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
+    setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
-    setSubmitStatus('idle')
+    setSubmitUi('sending')
 
     try {
       const response = await fetch('/api/send-email', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       })
 
       if (response.ok) {
-        setSubmitStatus('success')
+        setSubmitUi('sent')
         setFormData({ name: '', email: '', subject: '', message: '' })
       } else {
-        const errorData = await response.json()
-        console.error('Erro ao enviar email:', errorData.error)
-        setSubmitStatus('error')
+        setSubmitUi('error')
       }
-    } catch (error) {
-      console.error('Erro ao enviar email:', error)
-      setSubmitStatus('error')
-    } finally {
-      setIsSubmitting(false)
+    } catch {
+      setSubmitUi('error')
     }
   }
 
@@ -68,81 +57,53 @@ const Contact = () => {
       icon: Mail,
       title: 'Email',
       value: 'kauegomessales189@gmail.com',
-      href: 'kauegomessales189@gmail.com'
-    },
-    {
-      icon: Phone,
-      title: 'Telefone',
-      value: '+55 (88) 99709-0674',
-      href: 'tel:+5588997090674'
+      href: 'mailto:kauegomessales189@gmail.com',
     },
     {
       icon: MapPin,
       title: 'Localização',
-      value: 'Fortaleza, CE - Brasil',
-      href: '#'
-    }
+      value: 'Fortaleza, CE — Brasil',
+      href: '#contact',
+    },
   ]
 
+  const sending = submitUi === 'sending'
+  const disabledButton = sending || submitUi === 'sent'
+
   return (
-    <section id="contact" className="py-20 bg-white dark:bg-dark-900">
+    <section id="contact" className="section-padding bg-[color:var(--surface)] border-t border-mutedfg/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.55 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center max-w-2xl mx-auto"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-            Vamos <span className="gradient-text">Conversar</span>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 tracking-tight">
+            Vamos <span className="gradient-text">conversar</span>
           </h2>
-          <p className="text-lg text-dark-600 dark:text-dark-400 max-w-2xl mx-auto">
-            Interessado em trabalhar juntos ou tem alguma pergunta? Entre em contato comigo!
+          <p className="text-lg text-mutedfg mb-12">
+            Envie uma mensagem — respondo por email em até um dia útil.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -16 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.55 }}
             viewport={{ once: true }}
           >
             <Card variant="elevated" className="p-8">
-              <h3 className="text-2xl font-bold mb-6">Envie uma Mensagem</h3>
-              
-              {submitStatus === 'success' && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="mb-6 p-4 bg-green-100 dark:bg-green-900/30 border border-green-300 dark:border-green-700 rounded-lg flex items-center space-x-3"
-                >
-                  <CheckCircle className="text-green-600" size={20} />
-                  <span className="text-green-800 dark:text-green-200">
-                    Mensagem enviada com sucesso! Entrarei em contato em breve.
-                  </span>
-                </motion.div>
-              )}
-
-              {submitStatus === 'error' && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="mb-6 p-4 bg-red-100 dark:bg-red-900/30 border border-red-300 dark:border-red-700 rounded-lg flex items-center space-x-3"
-                >
-                  <AlertCircle className="text-red-600" size={20} />
-                  <span className="text-red-800 dark:text-red-200">
-                    Erro ao enviar mensagem. Tente novamente.
-                  </span>
-                </motion.div>
-              )}
+              <h3 className="font-display text-2xl font-bold mb-8 text-[color:var(--text)]">
+                Mensagem
+              </h3>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-dark-700 dark:text-dark-300 mb-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-mutedfg mb-2">
                       Nome *
                     </label>
                     <input
@@ -152,12 +113,14 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-dark-300 dark:border-dark-600 rounded-lg bg-white dark:bg-dark-800 text-dark-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-200"
-                      placeholder="seu nome"
+                      autoComplete="name"
+                      maxLength={120}
+                      className="w-full px-4 py-3 rounded-lg border border-mutedfg/25 bg-[color:var(--bg)] text-[color:var(--text)] placeholder:text-mutedfg/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)]"
+                      placeholder="Seu nome"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-dark-700 dark:text-dark-300 mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-mutedfg mb-2">
                       Email *
                     </label>
                     <input
@@ -167,14 +130,16 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-dark-300 dark:border-dark-600 rounded-lg bg-white dark:bg-dark-800 text-dark-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-200"
-                      placeholder="seu.email@exemplo.com"
+                      autoComplete="email"
+                      maxLength={254}
+                      className="w-full px-4 py-3 rounded-lg border border-mutedfg/25 bg-[color:var(--bg)] text-[color:var(--text)] placeholder:text-mutedfg/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)]"
+                      placeholder="voce@email.com"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-dark-700 dark:text-dark-300 mb-2">
+                  <label htmlFor="subject" className="block text-sm font-medium text-mutedfg mb-2">
                     Assunto *
                   </label>
                   <input
@@ -184,13 +149,14 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-dark-300 dark:border-dark-600 rounded-lg bg-white dark:bg-dark-800 text-dark-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-200"
-                    placeholder="Qual é o assunto da sua mensagem?"
+                    maxLength={180}
+                    className="w-full px-4 py-3 rounded-lg border border-mutedfg/25 bg-[color:var(--bg)] text-[color:var(--text)] placeholder:text-mutedfg/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)]"
+                    placeholder="Sobre o que é a mensagem?"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-dark-700 dark:text-dark-300 mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-mutedfg mb-2">
                     Mensagem *
                   </label>
                   <textarea
@@ -200,101 +166,93 @@ const Contact = () => {
                     onChange={handleInputChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 border border-dark-300 dark:border-dark-600 rounded-lg bg-white dark:bg-dark-800 text-dark-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-200 resize-none"
-                    placeholder="Conte-me sobre seu projeto ou pergunta..."
+                    maxLength={4000}
+                    className="w-full px-4 py-3 rounded-lg border border-mutedfg/25 bg-[color:var(--bg)] text-[color:var(--text)] placeholder:text-mutedfg/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] resize-none"
+                    placeholder="Detalhes do projeto ou pergunta..."
                   />
                 </div>
 
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full"
-                  size="lg"
-                >
-                  {isSubmitting ? (
+                <Button type="submit" disabled={disabledButton} className="w-full" size="lg">
+                  {submitUi === 'idle' && (
                     <>
-                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                      Enviando...
-                    </>
-                  ) : (
-                    <>
-                      Enviar Mensagem
-                      <Send size={20} className="ml-2" />
+                      Enviar mensagem
+                      <Send size={20} className="ml-2" aria-hidden />
                     </>
                   )}
+                  {submitUi === 'sending' && <>Enviando...</>}
+                  {submitUi === 'sent' && <>✓ Mensagem enviada</>}
+                  {submitUi === 'error' && <>Erro — tente novamente</>}
                 </Button>
+
+                {submitUi === 'error' ? (
+                  <p className="text-sm text-red-600 dark:text-red-400" role="alert">
+                    Não foi possível enviar agora. Tente de novo ou use o email ao lado.
+                  </p>
+                ) : null}
               </form>
             </Card>
           </motion.div>
 
-          {/* Contact Information */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 16 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.55 }}
             viewport={{ once: true }}
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold mb-6">Informações de Contato</h3>
-              <p className="text-dark-600 dark:text-dark-400 mb-8 leading-relaxed">
-                Estou sempre disponível para novos projetos e oportunidades. 
-                Sinta-se à vontade para entrar em contato através de qualquer um dos canais abaixo.
+              <h3 className="font-display text-2xl font-bold mb-4 text-[color:var(--text)]">
+                Contato direto
+              </h3>
+              <p className="text-mutedfg leading-relaxed">
+                Prefiro primeiro contato por email para organizar contexto e responder com qualidade.
               </p>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-4">
               {contactInfo.map((info, index) => (
                 <motion.a
                   key={info.title}
                   href={info.href}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  transition={{ duration: 0.45, delay: index * 0.06 }}
                   viewport={{ once: true }}
-                  whileHover={{ scale: 1.02 }}
-                  className="flex items-center space-x-4 p-4 rounded-lg bg-dark-50 dark:bg-dark-800 hover:bg-dark-100 dark:hover:bg-dark-700 transition-colors duration-200"
+                  className="flex items-center gap-4 rounded-xl border border-mutedfg/15 bg-[color:var(--bg)] p-4 hover:border-[color:var(--accent)] transition-colors"
                 >
-                  <div className="p-3 rounded-lg bg-primary-100 dark:bg-primary-900/30">
-                    <info.icon className="text-primary-600" size={24} />
+                  <div className="rounded-lg bg-[color:var(--surface)] p-3 border border-mutedfg/15">
+                    <info.icon className="text-[color:var(--accent)]" size={22} aria-hidden />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-dark-900 dark:text-white">
-                      {info.title}
-                    </h4>
-                    <p className="text-dark-600 dark:text-dark-400">
-                      {info.value}
-                    </p>
+                    <h4 className="font-semibold text-[color:var(--text)]">{info.title}</h4>
+                    <p className="text-mutedfg text-sm">{info.value}</p>
                   </div>
                 </motion.a>
               ))}
             </div>
 
-            {/* Additional Info */}
             <Card variant="glass" className="p-6">
-              <h4 className="text-lg font-bold mb-4">Disponibilidade</h4>
-              <div className="space-y-3 text-sm text-dark-600 dark:text-dark-400">
-                <div className="flex justify-between">
-                  <span>Projetos Freelance:</span>
-                  <span className="font-semibold text-primary-600">Disponível</span>
+              <h4 className="font-display text-lg font-bold mb-4 text-[color:var(--text)]">
+                Disponibilidade
+              </h4>
+              <div className="space-y-3 text-sm text-mutedfg">
+                <div className="flex justify-between gap-4">
+                  <span>Freelance:</span>
+                  <span className="font-semibold text-[color:var(--accent)]">Disponível</span>
                 </div>
-                <div className="flex justify-between">
-                  <span>Oportunidades Full-time:</span>
-                  <span className="font-semibold text-red-500">Fechado</span>
+                <div className="flex justify-between gap-4">
+                  <span>Full-time:</span>
+                  <span className="font-semibold text-mutedfg">Indisponível</span>
                 </div>
-                <div className="flex justify-between">
-                  <span>Tempo de Resposta:</span>
-                  <span className="font-semibold text-primary-600">24h</span>
+                <div className="flex justify-between gap-4">
+                  <span>Resposta:</span>
+                  <span className="font-semibold text-[color:var(--accent)]">24h úteis</span>
                 </div>
               </div>
             </Card>
-
-
           </motion.div>
         </div>
       </div>
     </section>
   )
 }
-
-export default Contact

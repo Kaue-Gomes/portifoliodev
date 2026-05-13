@@ -1,323 +1,201 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Design tokens — light */
+:root {
+  --bg: #f4f4f8;
+  --surface: #ffffff;
+  --accent: #6366f1;
+  --text: #12121a;
+  --muted: #6b6b80;
+  --accent-dot: rgba(99, 102, 241, 0.12);
+}
+
+/* Design tokens — dark (briefing) */
+.dark {
+  color-scheme: dark;
+  --bg: #0a0a0f;
+  --surface: #12121a;
+  --accent: #6366f1;
+  --text: #e8e8f0;
+  --muted: #6b6b80;
+  --accent-dot: rgba(99, 102, 241, 0.15);
+}
 
 @layer base {
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
-    @apply bg-white dark:bg-dark-900 text-dark-900 dark:text-white;
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body), system-ui, sans-serif;
     position: relative;
     overflow-x: hidden;
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
-  
-  /* Transição de tema elegante e dinâmica */
-  * {
-    transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-                border-color 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-                color 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), system-ui, sans-serif;
   }
-  
-  /* Efeito de transição suave para o tema */
-  .dark {
-    color-scheme: dark;
-  }
-  
-  .dark body {
-    @apply bg-dark-900 text-white;
-  }
-  
-  /* Efeitos de transição de tema elegantes e dinâmicos */
-  .theme-transition {
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-  }
-  
-  /* Efeito de fade suave para textos */
-  .text-transition {
-    transition: color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  /* Efeito de slide elegante para backgrounds */
-  .bg-transition {
-    transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  /* Efeito de glow dinâmico para elementos importantes */
-  .glow-transition {
-    transition: box-shadow 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  /* Animação de entrada elegante para novos elementos */
-  .theme-enter {
-    animation: themeEnter 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  @keyframes themeEnter {
-    0% {
-      opacity: 0;
-      transform: translateY(20px) scale(0.95);
-    }
-    50% {
-      opacity: 0.7;
-      transform: translateY(10px) scale(0.98);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-  }
-  
-  /* Efeito de onda de transição */
-  .theme-wave {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .theme-wave::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
-    transition: left 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  .theme-wave.active::before {
-    left: 100%;
-  }
-  
-  /* Efeito de partículas flutuantes */
-  .theme-particles {
-    position: relative;
-  }
-  
-  .theme-particles::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: 
-      radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 40% 40%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
-    opacity: 0;
-    transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
-    pointer-events: none;
-  }
-  
-  .theme-particles.active::after {
-    opacity: 1;
-  }
-  
-  /* Efeito de morphing para cards */
-  .theme-morph {
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-style: preserve-3d;
-  }
-  
-  .theme-morph:hover {
-    transform: translateY(-5px) rotateX(5deg);
-  }
-  
-  /* Efeito de brilho dinâmico */
-  .theme-shine {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .theme-shine::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-      45deg,
-      transparent,
-      rgba(255, 255, 255, 0.1),
-      transparent,
-      rgba(59, 130, 246, 0.1),
-      transparent
-    );
-    transform: rotate(45deg) translateX(-100%);
-    transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  .dark .theme-shine::before {
-    background: linear-gradient(
-      45deg,
-      transparent,
-      rgba(255, 255, 255, 0.05),
-      transparent,
-      rgba(59, 130, 246, 0.15),
-      transparent
-    );
-  }
-  
-  .theme-shine:hover::before {
-    transform: rotate(45deg) translateX(100%);
-  }
-  
-  /* Estado de transição de tema */
-  .theme-transitioning {
-    pointer-events: none;
-  }
-  
-  .theme-transitioning * {
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  }
-  
-  /* Efeito de pulso durante transição */
-  .theme-transitioning .theme-pulse {
-    animation: themePulse 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  @keyframes themePulse {
-    0% {
-      transform: scale(1);
-      opacity: 1;
-    }
-    50% {
-      transform: scale(1.05);
-      opacity: 0.8;
-    }
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-  
-  /* Efeito de rotação suave */
-  .theme-rotate {
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  .theme-transitioning .theme-rotate {
-    transform: rotate(360deg);
-  }
-  
-  /* Efeito de fade elegante */
-  .theme-fade {
-    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  .theme-transitioning .theme-fade {
-    animation: themeFade 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  @keyframes themeFade {
-    0% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.7;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-  
-  /* Efeito de slide suave */
-  .theme-slide {
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  .theme-transitioning .theme-slide {
-    animation: themeSlide 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  @keyframes themeSlide {
-    0% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
-  
-  /* Efeito de ripple para botões */
-  .ripple-effect {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .ripple-effect::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-  }
-  
-  .ripple-effect:active::before {
-    width: 300px;
-    height: 300px;
-  }
+}
+
+/* Hero — grid de pontos + vignette */
+.hero-bg {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--bg);
+  background-image: radial-gradient(
+    circle,
+    var(--accent-dot) 1px,
+    transparent 1px
+  );
+  background-size: 32px 32px;
+}
+
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 80% 60% at 50% 0%,
+    transparent 40%,
+    var(--bg) 100%
+  );
+}
+
+/* Nav — underline do centro */
+.nav-link {
+  position: relative;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--text);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Timeline — sobre */
+.timeline {
+  border-left: 2px solid color-mix(in srgb, var(--muted) 35%, transparent);
+  padding-left: 1.5rem;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -1.6rem;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
 }
 
 @layer components {
   .gradient-text {
-    @apply bg-gradient-to-r from-primary-600 to-purple-600 bg-clip-text text-transparent;
+    color: var(--accent);
   }
-  
+
   .glass-effect {
-    @apply backdrop-blur-md bg-white/10 dark:bg-dark-800/10 border border-white/20 dark:border-dark-700/20;
+    @apply backdrop-blur-md border;
+    background-color: color-mix(in srgb, var(--surface) 85%, transparent);
+    border-color: color-mix(in srgb, var(--muted) 25%, transparent);
   }
-  
+
   .card-hover {
-    @apply transition-all duration-300 hover:scale-105 hover:shadow-xl;
+    @apply transition-all duration-300;
   }
-  
-  .btn-primary {
-    @apply px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold rounded-lg hover:from-primary-700 hover:to-primary-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
+
+  .btn-primary-solid {
+    @apply px-6 py-3 rounded-lg font-medium tracking-wide transition-all duration-200;
+    background-color: var(--accent);
+    color: #fff;
   }
-  
-  .btn-secondary {
-    @apply px-6 py-3 border-2 border-primary-600 text-primary-600 dark:text-primary-400 font-semibold rounded-lg hover:bg-primary-600 hover:text-white transition-all duration-300 transform hover:scale-105;
+
+  .btn-primary-solid:hover {
+    opacity: 0.92;
   }
-  
-  /* Garantir que botões com ícones tenham layout correto */
+
+  .btn-secondary-outline {
+    @apply px-6 py-3 rounded-lg font-medium transition-all duration-200 border;
+    border-color: var(--muted);
+    color: var(--text);
+    background: transparent;
+  }
+
+  .btn-secondary-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
   .button-content {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
   }
+
+  .section-padding {
+    @apply py-24 md:py-32;
+  }
+
+  .section-header-title {
+    @apply mb-4;
+  }
+
+  .section-header-desc {
+    @apply mb-12;
+  }
 }
 
-/* Custom scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-dark-100 dark:bg-dark-800;
+  background: var(--surface);
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-primary-500 rounded-full;
+  background: var(--accent);
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-primary-600;
+  opacity: 0.85;
 }

@@ -1,29 +1,61 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Syne, DM_Sans } from 'next/font/google'
 import './globals.css'
 import ConsoleFilter from '@/components/ConsoleFilter'
+import { Analytics } from '@vercel/analytics/react'
 
-const inter = Inter({ subsets: ['latin'] })
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://portifolio-cyan-psi-61.vercel.app'
+
+const syne = Syne({
+  subsets: ['latin'],
+  variable: '--font-display',
+  weight: ['700', '800'],
+})
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  variable: '--font-body',
+})
 
 export const metadata: Metadata = {
-  metadataBase: new URL('http://localhost:3000'),
-  title: 'kauegomes - Desenvolvedor Full Stack & Engenheiro de Dados',
-  description: 'Portfólio profissional de um desenvolvedor full stack e engenheiro de dados apaixonado por criar soluções inovadoras e experiências digitais excepcionais.',
-  keywords: ['desenvolvedor', 'full stack', 'engenheiro de dados', 'react', 'next.js', 'typescript', 'python', 'portfólio'],
+  metadataBase: new URL(siteUrl),
+  title: 'Kauê Gomes — Full Stack & Dados',
+  description:
+    'Construo aplicações web e pipelines que transformam informação em produto. Portfólio de Kauê Gomes — Full Stack e Engenheiro de Dados.',
+  keywords: [
+    'desenvolvedor',
+    'full stack',
+    'engenheiro de dados',
+    'react',
+    'next.js',
+    'typescript',
+    'python',
+    'portfólio',
+  ],
   authors: [{ name: 'Kauê Gomes' }],
   creator: 'Kauê Gomes',
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
-    url: 'https://seu-portfolio.com',
-    title: 'kauegomes - Desenvolvedor Full Stack & Engenheiro de Dados',
-    description: 'Portfólio profissional de um desenvolvedor full stack e engenheiro de dados apaixonado por criar soluções inovadoras.',
-    siteName: 'kauegomes',
+    url: siteUrl,
+    title: 'Kauê Gomes — Full Stack & Dados',
+    description:
+      'Construo aplicações web e pipelines que transformam informação em produto.',
+    siteName: 'Kauê Gomes',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Kauê Gomes — Full Stack & Dados' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'kauegomes - Desenvolvedor Full Stack & Engenheiro de Dados',
-    description: 'Portfólio profissional de um desenvolvedor full stack e engenheiro de dados apaixonado por criar soluções inovadoras.',
+    title: 'Kauê Gomes — Full Stack & Dados',
+    description:
+      'Construo aplicações web e pipelines que transformam informação em produto.',
+    images: ['/og-image.png'],
+  },
+  manifest: '/site.webmanifest',
+  icons: {
+    icon: [{ url: '/icon.png', sizes: '512x512', type: 'image/png' }],
+    apple: [{ url: '/icon.png', sizes: '512x512', type: 'image/png' }],
   },
 }
 
@@ -40,23 +72,17 @@ export default function RootLayout({
             __html: `
               (function() {
                 try {
-                  // Aguarda o DOM estar pronto
                   if (document.readyState === 'loading') {
                     document.addEventListener('DOMContentLoaded', applyTheme);
                   } else {
                     applyTheme();
                   }
-                  
                   function applyTheme() {
                     const savedTheme = localStorage.getItem('darkMode');
                     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
                     const shouldBeDark = savedTheme !== null ? savedTheme === 'true' : prefersDark;
-                    
                     const htmlElement = document.documentElement;
-                    
-                    // Remove classes existentes para evitar duplicação
                     htmlElement.classList.remove('dark');
-                    
                     if (shouldBeDark) {
                       htmlElement.classList.add('dark');
                     }
@@ -69,9 +95,12 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.className} antialiased`}>
+      <body
+        className={`${syne.variable} ${dmSans.variable} ${dmSans.className} antialiased`}
+      >
         <ConsoleFilter />
         {children}
+        <Analytics />
       </body>
     </html>
   )

@@ -7,12 +7,15 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
 
 const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ className, variant = 'default', children, ...props }, ref) => {
-      const variants = {
-    default: 'bg-white/90 dark:bg-dark-800/90 border border-dark-200/50 dark:border-dark-700/50 shadow-sm hover:shadow-md backdrop-blur-sm theme-morph',
-    glass: 'backdrop-blur-md bg-white/10 dark:bg-dark-800/10 border border-white/20 dark:border-dark-700/20 shadow-lg hover:shadow-xl theme-shine',
-    elevated: 'bg-white/95 dark:bg-dark-800/95 border border-dark-200/50 dark:border-dark-700/50 shadow-lg hover:shadow-2xl backdrop-blur-sm hover:scale-[1.02] theme-morph'
-  }
-    
+    const variants = {
+      default:
+        'bg-[color:var(--surface)] border border-mutedfg/20 shadow-sm hover:shadow-md',
+      glass:
+        'backdrop-blur-md bg-[color:var(--surface)]/80 border border-mutedfg/20 dark:bg-[color:var(--surface)]/60',
+      elevated:
+        'bg-[color:var(--surface)] border border-mutedfg/20 shadow-lg hover:shadow-xl',
+    }
+
     return (
       <div
         ref={ref}
