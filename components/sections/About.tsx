@@ -28,6 +28,13 @@ const timeline = [
       'Pipelines e modelagem de dados em escala corporativa para decisões operacionais.',
   },
   {
+    period: '2024 — 2025',
+    title: 'Desenvolvimento freelancer',
+    company: 'Autônomo',
+    impact:
+      'Projetos sob demanda: interfaces web, integrações e apoio em dados para clientes e parcerias.',
+  },
+  {
     period: '2024',
     title: 'Estágio — Dev Júnior',
     company: 'Ultra Energia Brasil',
