@@ -1,26 +1,28 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from 'framer-motion'
 import { ArrowDown, Github, Linkedin, Mail, Download } from 'lucide-react'
 import Button from '@/components/ui/Button'
-
-const container = {
-  hidden: {},
-  show: {
-    transition: { staggerChildren: 0.12 },
-  },
-}
-
-const item = {
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' },
-  },
-}
+import { heroItem, heroStaggerContainer } from '@/lib/motion'
 
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement | null>(null)
+  const reduceMotion = useReducedMotion()
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  })
+
+  const parallaxY = useTransform(scrollYProgress, [0, 1], ['0%', '12%'])
+  const layerOpacity = useTransform(scrollYProgress, [0, 0.9], [1, 0.82])
+
   const scrollToNext = () => {
     document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })
   }
@@ -42,19 +44,28 @@ export default function Hero() {
 
   return (
     <section
+      ref={sectionRef}
       id="home"
-      className="relative isolate flex min-h-screen items-center justify-center overflow-hidden hero-bg"
+      className="relative isolate flex min-h-screen items-center justify-center overflow-hidden bg-[color:var(--bg)]"
     >
-      <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-24 pb-28">
+      <motion.div
+        aria-hidden
+        className="hero-parallax-layer pointer-events-none absolute inset-0 -z-[1]"
+        style={
+          reduceMotion ? undefined : { y: parallaxY, opacity: layerOpacity }
+        }
+      />
+
+      <div className="relative z-[1] mx-auto max-w-7xl px-4 pt-24 pb-28 text-center sm:px-6 lg:px-8">
         <motion.div
-          variants={container}
+          variants={heroStaggerContainer}
           initial="hidden"
-          animate="show"
+          animate="visible"
           className="flex flex-col items-center"
         >
           <motion.h1
-            variants={item}
-            className="font-display font-black tracking-tight leading-none text-[color:var(--text)] max-w-4xl mx-auto"
+            variants={heroItem}
+            className="font-display mx-auto max-w-4xl font-black leading-none tracking-tight text-[color:var(--text)]"
             style={{
               fontSize: 'clamp(2.75rem, 7vw, 7rem)',
             }}
@@ -63,23 +74,25 @@ export default function Hero() {
           </motion.h1>
 
           <motion.p
-            variants={item}
-            className="mt-6 max-w-2xl mx-auto text-lg sm:text-xl text-mutedfg leading-relaxed"
+            variants={heroItem}
+            className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-mutedfg sm:text-xl"
           >
             Construo aplicações web e pipelines que transformam informação em produto.
             Engenheiro de Dados na Veolia.
           </motion.p>
 
           <motion.div
-            variants={item}
-            className="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center w-full sm:w-auto"
+            variants={heroItem}
+            className="mt-10 flex w-full flex-col items-center justify-center gap-4 sm:flex-row sm:w-auto"
           >
             <Button
               size="lg"
               variant="primary"
-              className="w-full sm:w-auto min-w-[180px]"
+              className="w-full min-w-[180px] sm:w-auto"
               onClick={() =>
-                document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })
+                document
+                  .getElementById('projects')
+                  ?.scrollIntoView({ behavior: 'smooth' })
               }
             >
               Ver Projetos
@@ -88,7 +101,7 @@ export default function Hero() {
             <Button
               variant="secondary"
               size="lg"
-              className="w-full sm:w-auto min-w-[180px]"
+              className="w-full min-w-[180px] sm:w-auto"
               onClick={downloadCV}
             >
               Baixar CV
@@ -97,14 +110,14 @@ export default function Hero() {
           </motion.div>
 
           <motion.div
-            variants={item}
-            className="flex justify-center items-center gap-6 pt-14 flex-wrap"
+            variants={heroItem}
+            className="flex flex-wrap items-center justify-center gap-6 pt-14"
           >
             {[
               { icon: Github, href: 'https://github.com/Kaue-Gomes', label: 'GitHub' },
               {
                 icon: Linkedin,
-                href: 'https://www.linkedin.com/in/kau%C3%AA-gomes-6b3433253/',
+                href: 'https://www.linkedin.com/in/kauegomesdata/',
                 label: 'LinkedIn',
               },
               { icon: Mail, href: 'mailto:kauegomessales189@gmail.com', label: 'Email' },
@@ -113,10 +126,12 @@ export default function Hero() {
                 key={social.label}
                 href={social.href}
                 target={social.label === 'Email' ? undefined : '_blank'}
-                rel={social.label === 'Email' ? undefined : 'noopener noreferrer'}
+                rel={
+                  social.label === 'Email' ? undefined : 'noopener noreferrer'
+                }
                 whileHover={{ scale: 1.06, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="rounded-full border border-mutedfg/25 bg-[color:var(--surface)] p-3 text-mutedfg hover:border-[color:var(--accent)] hover:text-[color:var(--accent)] transition-colors duration-200"
+                className="rounded-full border border-mutedfg/25 bg-[color:var(--surface)] p-3 text-mutedfg transition-colors duration-200 hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
                 aria-label={social.label}
               >
                 <social.icon size={22} aria-hidden />
@@ -132,16 +147,22 @@ export default function Hero() {
         transition={{ duration: 0.6, delay: 0.9 }}
         type="button"
         onClick={scrollToNext}
-        className="absolute bottom-6 left-1/2 z-[2] -translate-x-1/2 rounded-full border border-mutedfg/25 bg-[color:var(--surface)] p-3 text-mutedfg hover:border-[color:var(--accent)] hover:text-[color:var(--accent)] transition-colors hidden sm:block"
+        className="absolute bottom-6 left-1/2 z-[2] hidden -translate-x-1/2 rounded-full border border-mutedfg/25 bg-[color:var(--surface)] p-3 text-mutedfg transition-colors hover:border-[color:var(--accent)] hover:text-[color:var(--accent)] sm:block"
         aria-label="Rolar para baixo"
       >
-        <motion.span
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          className="block"
-        >
-          <ArrowDown size={22} aria-hidden />
-        </motion.span>
+        {!reduceMotion ? (
+          <motion.span
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            className="block"
+          >
+            <ArrowDown size={22} aria-hidden />
+          </motion.span>
+        ) : (
+          <span className="block">
+            <ArrowDown size={22} aria-hidden />
+          </span>
+        )}
       </motion.button>
     </section>
   )

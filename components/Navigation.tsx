@@ -1,50 +1,83 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Sun, Moon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useTheme } from '@/hooks/useTheme'
+import { useOptionalLenis } from '@/components/MotionProviders'
 
 const SECTION_IDS = ['home', 'about', 'skills', 'projects', 'contact'] as const
+
+/** Offset do nav fixo (~64px): o item ativo é o último cuja seção passou esse limite ao rolar. */
+const NAV_OFFSET = 76
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState<(typeof SECTION_IDS)[number]>('home')
   const { isDark, mounted, toggleTheme } = useTheme()
+  const lenis = useOptionalLenis()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 24)
-    window.addEventListener('scroll', handleScroll, { passive: true })
     handleScroll()
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
-  const observeSections = useCallback(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.target.id) {
-            setActiveSection(entry.target.id as (typeof SECTION_IDS)[number])
-          }
-        })
-      },
-      { threshold: [0.35, 0.5], rootMargin: '-20% 0px -35% 0px' }
-    )
+    let lenisUnsub: (() => void) | undefined
+    if (lenis) lenisUnsub = lenis.on('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
 
-    SECTION_IDS.forEach((id) => {
-      const el = document.getElementById(id)
-      if (el) observer.observe(el)
-    })
-
-    return () => observer.disconnect()
-  }, [])
+    return () => {
+      lenisUnsub?.()
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [lenis])
 
   useEffect(() => {
-    const cleanup = observeSections()
-    return cleanup
-  }, [observeSections])
+    const spy = () => {
+      const doc = document.documentElement
+      const nearBottom = window.innerHeight + window.scrollY >= doc.scrollHeight - 64
+      const nearTop = window.scrollY < 40
+
+      let current: (typeof SECTION_IDS)[number] = 'home'
+
+      if (nearBottom) {
+        current = 'contact'
+      } else if (!nearTop) {
+        for (let i = SECTION_IDS.length - 1; i >= 0; i--) {
+          const id = SECTION_IDS[i]
+          const el = document.getElementById(id)
+          if (!el) continue
+          const top = el.getBoundingClientRect().top
+          if (top <= NAV_OFFSET) {
+            current = id
+            break
+          }
+        }
+      }
+
+      setActiveSection((prev) => (prev === current ? prev : current))
+    }
+
+    spy()
+
+    let lenisScrollUnsub: (() => void) | undefined
+
+    if (lenis) {
+      lenisScrollUnsub = lenis.on('scroll', () => {
+        spy()
+      })
+    } else {
+      window.addEventListener('scroll', spy, { passive: true })
+    }
+    window.addEventListener('resize', spy)
+
+    return () => {
+      lenisScrollUnsub?.()
+      window.removeEventListener('scroll', spy)
+      window.removeEventListener('resize', spy)
+    }
+  }, [lenis])
 
   const navItems: { href: string; label: string; id: (typeof SECTION_IDS)[number] }[] = [
     { href: '#home', label: 'Início', id: 'home' },

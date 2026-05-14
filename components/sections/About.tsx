@@ -3,6 +3,14 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { MapPin } from 'lucide-react'
+import {
+  fadeUp,
+  fadeInFromLeft,
+  fadeInFromRight,
+  sectionViewport,
+  staggerContainer,
+  staggerItem,
+} from '@/lib/motion'
 
 const stats = [
   { value: '3+', label: 'anos de experiência' },
@@ -36,10 +44,10 @@ export default function About() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={sectionViewport}
           className="text-center max-w-2xl mx-auto"
         >
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 tracking-tight">
@@ -52,10 +60,10 @@ export default function About() {
 
         <div className="grid lg:grid-cols-[minmax(0,55%)_minmax(0,45%)] gap-10 lg:gap-14 items-start">
           <motion.div
-            initial={{ opacity: 0, x: -16 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.55 }}
-            viewport={{ once: true }}
+            variants={fadeInFromLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={sectionViewport}
             className="space-y-8"
           >
             <div className="space-y-4 text-mutedfg leading-relaxed max-w-xl">
@@ -88,10 +96,10 @@ export default function About() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 16 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.55 }}
-            viewport={{ once: true }}
+            variants={fadeInFromRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={sectionViewport}
             className="flex flex-col gap-8"
           >
             <div className="relative mx-auto w-full max-w-md">
@@ -111,14 +119,17 @@ export default function About() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
-              {stats.map((s, i) => (
+            <motion.div
+              className="grid grid-cols-2 gap-6"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={sectionViewport}
+            >
+              {stats.map((s) => (
                 <motion.div
                   key={s.label}
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: i * 0.06 }}
-                  viewport={{ once: true }}
+                  variants={staggerItem}
                   className="rounded-xl border border-mutedfg/15 bg-[color:var(--bg)] p-6 text-center transition-all duration-300 hover:border-[color:var(--accent)]"
                 >
                   <div className="font-display text-2xl sm:text-3xl font-bold text-[color:var(--text)]">
@@ -127,7 +138,7 @@ export default function About() {
                   <div className="mt-1 text-xs sm:text-sm text-mutedfg capitalize">{s.label}</div>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

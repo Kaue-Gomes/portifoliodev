@@ -5,6 +5,14 @@ import { motion } from 'framer-motion'
 import { Mail, MapPin, Send } from 'lucide-react'
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
+import {
+  fadeUp,
+  fadeInFromLeft,
+  fadeInFromRight,
+  sectionViewport,
+  staggerContainer,
+  staggerItem,
+} from '@/lib/motion'
 
 type SubmitUiStatus = 'idle' | 'sending' | 'sent' | 'error'
 
@@ -74,10 +82,10 @@ export default function Contact() {
     <section id="contact" className="section-padding bg-[color:var(--surface)] border-t border-mutedfg/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55 }}
-          viewport={{ once: true }}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={sectionViewport}
           className="text-center max-w-2xl mx-auto"
         >
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 tracking-tight">
@@ -90,10 +98,10 @@ export default function Contact() {
 
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-14">
           <motion.div
-            initial={{ opacity: 0, x: -16 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.55 }}
-            viewport={{ once: true }}
+            variants={fadeInFromLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={sectionViewport}
           >
             <Card variant="elevated" className="p-8">
               <h3 className="font-display text-2xl font-bold mb-8 text-[color:var(--text)]">
@@ -194,10 +202,10 @@ export default function Contact() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 16 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.55 }}
-            viewport={{ once: true }}
+            variants={fadeInFromRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={sectionViewport}
             className="space-y-8"
           >
             <div>
@@ -209,15 +217,18 @@ export default function Contact() {
               </p>
             </div>
 
-            <div className="space-y-4">
-              {contactInfo.map((info, index) => (
+            <motion.div
+              className="space-y-4"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={sectionViewport}
+            >
+              {contactInfo.map((info) => (
                 <motion.a
                   key={info.title}
                   href={info.href}
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.45, delay: index * 0.06 }}
-                  viewport={{ once: true }}
+                  variants={staggerItem}
                   className="flex items-center gap-4 rounded-xl border border-mutedfg/15 bg-[color:var(--bg)] p-4 hover:border-[color:var(--accent)] transition-colors"
                 >
                   <div className="rounded-lg bg-[color:var(--surface)] p-3 border border-mutedfg/15">
@@ -229,7 +240,7 @@ export default function Contact() {
                   </div>
                 </motion.a>
               ))}
-            </div>
+            </motion.div>
 
             <Card variant="glass" className="p-6">
               <h4 className="font-display text-lg font-bold mb-4 text-[color:var(--text)]">

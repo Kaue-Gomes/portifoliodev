@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Syne, DM_Sans } from 'next/font/google'
 import './globals.css'
 import ConsoleFilter from '@/components/ConsoleFilter'
+import { MotionProviders } from '@/components/MotionProviders'
 import { Analytics } from '@vercel/analytics/react'
 
 const siteUrl =
@@ -65,7 +66,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="pt-BR" className="scroll-smooth" suppressHydrationWarning>
+    <html lang="pt-BR" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -99,7 +100,7 @@ export default function RootLayout({
         className={`${syne.variable} ${dmSans.variable} ${dmSans.className} antialiased`}
       >
         <ConsoleFilter />
-        {children}
+        <MotionProviders>{children}</MotionProviders>
         <Analytics />
       </body>
     </html>

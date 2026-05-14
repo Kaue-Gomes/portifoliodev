@@ -3,9 +3,18 @@
 import { motion } from 'framer-motion'
 import { ArrowUp } from 'lucide-react'
 import Button from '@/components/ui/Button'
+import { useOptionalLenis } from '@/components/MotionProviders'
+import { staggerContainer, staggerItem, fadeUp, sectionViewport } from '@/lib/motion'
 
 export default function Footer() {
+  const lenis = useOptionalLenis()
+
   const scrollToTop = () => {
+    if (typeof window === 'undefined') return
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: false })
+      return
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
@@ -14,14 +23,15 @@ export default function Footer() {
   return (
     <footer className="relative border-t border-mutedfg/15 bg-[color:var(--surface)] py-14">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid md:grid-cols-4 gap-10 mb-10">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={sectionViewport}
+          className="grid md:grid-cols-4 gap-10 mb-10"
+        >
           <div className="md:col-span-2">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45 }}
-              viewport={{ once: true }}
-            >
+            <motion.div variants={staggerItem}>
               <div className="flex items-center gap-2 mb-4">
                 <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[color:var(--accent)] text-white font-display font-bold text-sm">
                   K
@@ -36,12 +46,7 @@ export default function Footer() {
             </motion.div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.05 }}
-            viewport={{ once: true }}
-          >
+          <motion.div variants={staggerItem}>
             <h3 className="font-display text-lg font-semibold mb-4 text-[color:var(--text)]">
               Links rápidos
             </h3>
@@ -65,12 +70,7 @@ export default function Footer() {
             </ul>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.1 }}
-            viewport={{ once: true }}
-          >
+          <motion.div variants={staggerItem}>
             <h3 className="font-display text-lg font-semibold mb-4 text-[color:var(--text)]">
               Contato
             </h3>
@@ -86,13 +86,14 @@ export default function Footer() {
               <li>Fortaleza, CE — Brasil</li>
             </ul>
           </motion.div>
-        </div>
+        </motion.div>
 
         <div className="border-t border-mutedfg/15 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <motion.span
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={sectionViewport}
             className="text-mutedfg text-sm text-center md:text-left"
           >
             © {currentYear} Kauê Gomes. Todos os direitos reservados.

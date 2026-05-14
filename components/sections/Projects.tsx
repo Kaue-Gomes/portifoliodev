@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useMemo, useState } from 'react'
 import type { LucideIcon } from 'lucide-react'
-import { CloudSun, ExternalLink, Github, Globe, Key, Newspaper } from 'lucide-react'
+import { CloudSun, ExternalLink, Github, Key, Newspaper, Sparkles } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import CredentialsModal from '@/components/ui/CredentialsModal'
@@ -40,6 +40,8 @@ type CompactProject = {
   description: string
   technologies: string[]
   filters: Exclude<ProjectFilterTab, 'Todas'>[]
+  /** Miniatura menor que os projetos em destaque */
+  thumbnail: string
   Icon: LucideIcon
   github?: string
   demo?: string
@@ -77,12 +79,14 @@ const projectsData: readonly Project[] = [
   },
   {
     kind: 'compact',
-    title: 'Landing Codesky',
-    headline: 'Landing institucional com foco em conversão.',
-    description: 'Frontend enxuto, tipografia forte e SEO básico para campanhas Codesky.',
-    technologies: ['HTML', 'CSS', 'JavaScript'],
+    title: 'NexusIA',
+    headline: 'Landing para apresentar uma nova IA ao mercado.',
+    description:
+      'Projeto acadêmico: página única pensada para comunicar valor, posicionamento e história dessa nova solução de IA com visual moderno.',
+    technologies: ['HTML', 'CSS', 'JavaScript', 'Landing'],
     filters: ['Frontend'],
-    Icon: Globe,
+    thumbnail: '/images/NexusIA.png',
+    Icon: Sparkles,
     github: 'https://github.com/Kaue-Gomes/landingpagecompartilhada',
     demo: 'https://ex.codesky.com.br/',
     hideDemo: false,
@@ -94,6 +98,7 @@ const projectsData: readonly Project[] = [
     description: 'Gráficos sobre APIs públicas e layout responsivo com CSS Grid.',
     technologies: ['React', 'Chart.js', 'APIs públicas'],
     filters: ['Frontend'],
+    thumbnail: '/projects/weather.png',
     Icon: CloudSun,
     github: 'https://github.com/Kaue-Gomes/WeatherMap',
     demo: undefined,
@@ -106,6 +111,7 @@ const projectsData: readonly Project[] = [
     description: 'CRUD simples + painel de analytics dentro do próprio projeto.',
     technologies: ['React', 'Firebase', 'Material UI'],
     filters: ['Frontend'],
+    thumbnail: '/projects/gomesblog.png',
     Icon: Newspaper,
     github: 'https://github.com/Kaue-Gomes/Blog',
     demo: 'https://kaue-gomes.github.io/Blog/',
@@ -221,27 +227,40 @@ function CompactProjectCard(project: CompactProps) {
       {...fadeLayoutTransition}
       transition={enterTransition}
       className={cn(
-        'relative flex flex-col gap-5 rounded-2xl p-6 md:p-7 min-h-[240px]',
+        'group relative flex flex-col gap-5 overflow-hidden rounded-2xl p-6 md:p-7 min-h-[280px]',
         'bg-[color:var(--surface)] ring-1 ring-inset ring-black/10 dark:ring-white/10',
         'transition-all duration-300',
-        'hover:border-transparent hover:ring-[color:var(--accent)]/45',
-        'hover:shadow-[0_0_28px_-10px_rgba(99,102,241,0.55)]',
+        'hover:ring-[color:var(--accent)]/42',
+        'hover:shadow-[0_0_32px_-12px_rgba(99,102,241,0.55)]',
         'focus-within:ring-2 focus-within:ring-[color:var(--accent)]/50'
       )}
     >
-      <div className="flex items-start gap-4">
-        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[color:var(--accent)]/12 text-[color:var(--accent)] ring-1 ring-inset ring-[color:var(--accent)]/25">
-          <Icon size={32} aria-hidden strokeWidth={2} />
+      <div className="relative -mx-6 -mt-6 mb-2 aspect-[16/9] max-h-[180px] w-[calc(100%+3rem)] overflow-hidden border-b border-black/5 bg-[color:var(--bg)] dark:border-white/[0.07] md:aspect-[21/10] md:max-h-[200px]">
+        <Image
+          src={project.thumbnail}
+          alt={`${project.title} — prévia`}
+          fill
+          sizes="(max-width: 768px) 100vw, 34vw"
+          className={cn(
+            'object-cover transition-all duration-500 ease-out',
+            'brightness-[0.92] saturate-[0.92] opacity-95',
+            'group-hover:saturate-100 group-hover:brightness-100 group-hover:opacity-100 group-hover:scale-[1.03]'
+          )}
+        />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/45 to-transparent" />
+        <span className="absolute bottom-3 right-3 flex h-11 w-11 items-center justify-center rounded-xl bg-neutral-950/55 text-[color:var(--accent)] ring-1 ring-white/20 backdrop-blur-sm">
+          <Icon size={22} aria-hidden strokeWidth={2} />
         </span>
-        <div className="min-w-0 space-y-1">
-          <h3 className="font-display text-lg font-bold tracking-tight text-[color:var(--text)]">
-            {project.title}
-          </h3>
-          <p className="text-sm font-medium text-mutedfg">{project.headline}</p>
-        </div>
       </div>
 
-      <p className="text-sm leading-relaxed text-mutedfg line-clamp-3">{project.description}</p>
+      <div className="min-w-0 space-y-1">
+        <h3 className="font-display text-lg font-bold tracking-tight text-[color:var(--text)] md:text-xl">
+          {project.title}
+        </h3>
+        <p className="text-sm font-semibold text-mutedfg">{project.headline}</p>
+      </div>
+
+      <p className="text-sm leading-relaxed text-[color:var(--text)]/85 line-clamp-3">{project.description}</p>
 
       <div className="flex flex-wrap gap-2 mt-auto pt-2">
         {project.technologies.map((tag) => (
