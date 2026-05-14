@@ -87,7 +87,7 @@ const projectsData: readonly Project[] = [
     filters: ['Frontend'],
     thumbnail: '/images/NexusIA.png',
     Icon: Sparkles,
-    github: 'https://github.com/Kaue-Gomes/landingpagecompartilhada',
+    github: 'https://github.com/Kaue-Gomes/NexusIA',
     demo: 'https://ex.codesky.com.br/',
     hideDemo: false,
   },
