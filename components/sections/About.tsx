@@ -95,15 +95,14 @@ export default function About() {
             className="flex flex-col gap-8"
           >
             <div className="relative mx-auto w-full max-w-md">
-              <div className="aspect-square overflow-hidden rounded-2xl border border-mutedfg/15 bg-[color:var(--bg)] transition-colors duration-300 hover:border-[color:var(--accent)]">
+              <div className="aspect-square overflow-hidden rounded-2xl bg-[color:var(--bg)] ring-1 ring-inset ring-black/10 dark:ring-white/10 shadow-[0_0_0_1px_rgba(99,102,241,0.12)] hover:shadow-[0_12px_40px_-18px_rgba(99,102,241,0.35)] transition-shadow duration-300">
                 <Image
-                  src="https://github.com/Kaue-Gomes.png"
+                  src="/images/portifolio-image.png"
                   alt="Kauê Gomes — foto de perfil"
                   width={640}
                   height={640}
                   className="h-full w-full object-cover"
                   priority
-                  unoptimized
                 />
               </div>
               <div className="mt-4 flex items-center justify-center gap-2 text-mutedfg text-sm">
