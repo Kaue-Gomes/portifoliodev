@@ -211,7 +211,7 @@ function FeaturedProjectCard({ onCredentials, ...project }: FeaturedProps) {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg bg-white/92 px-4 py-2.5 text-sm font-semibold text-neutral-950 transition-colors hover:bg-[color:var(--accent)] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)]"
+                className="inline-flex items-center gap-2 rounded-lg border border-zinc-200/55 bg-transparent px-4 py-2.5 text-sm font-semibold text-zinc-100 transition-colors hover:border-[color:var(--accent)] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)]"
               >
                 Código <Github size={16} aria-hidden />
               </a>
@@ -295,7 +295,7 @@ function CompactProjectCard(project: CompactProps) {
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[color:var(--text)] hover:text-[color:var(--accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] rounded-sm px-0.5"
+            className="inline-flex items-center gap-1.5 rounded-sm px-0.5 text-sm font-semibold text-white hover:text-[color:var(--accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)]"
           >
             Código <Github size={15} aria-hidden />
           </a>
