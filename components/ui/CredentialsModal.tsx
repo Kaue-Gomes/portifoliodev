@@ -24,22 +24,10 @@ export default function CredentialsModal({ isOpen, onClose }: CredentialsModalPr
 
   const credentials: Credential[] = [
     {
-      role: 'Dono',
-      email: 'admin@exemplo.com',
-      password: '123',
-      description: 'Acesso completo ao sistema com permissões administrativas.',
-    },
-    {
-      role: 'Vendedor',
-      email: 'joao.silva@exemplo.com',
-      password: '123',
-      description: 'Fluxos de vendas e cadastro de clientes.',
-    },
-    {
-      role: 'Administrador',
-      email: 'joao.silva@exemplo.com',
-      password: '123',
-      description: 'Gestão de usuários e parâmetros do sistema.',
+      role: 'User',
+      email: 'laboratorio@codesky.local',
+      password: 'CodeskyDemo2026!',
+      description: 'Acesso completo ao sistema',
     },
   ]
 
@@ -81,7 +69,7 @@ export default function CredentialsModal({ isOpen, onClose }: CredentialsModalPr
                 <div>
                   <h2 className="font-display text-2xl font-bold mb-2">Credenciais de demo</h2>
                   <p className="text-sm text-white/90">
-                    MyGestor — use apenas para explorar o fluxo na demonstração.
+                    MyGestor — é necessário digitar a senha manualmente no login.
                   </p>
                 </div>
                 <Button
