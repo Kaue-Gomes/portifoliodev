@@ -334,7 +334,7 @@ export default function Projects() {
             Meus <span className="gradient-text">projetos</span>
           </h2>
           <p className="text-lg text-mutedfg mb-8">
-           Construção ágil sem abrir mão de estrutura, legibilidade e consistência visual.
+           Projetos pensados para crescer de forma sustentável, sem perder legibilidade e organização.
           </p>
         </motion.div>
 

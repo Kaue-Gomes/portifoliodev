@@ -89,12 +89,14 @@ export default function Skills() {
           <p className="mb-3 text-xs font-bold uppercase tracking-[0.35em] text-[color:var(--accent)]">
             Stack declarada por área
           </p>
+
           <h2 className="font-display text-4xl font-extrabold tracking-tight text-[color:var(--text)] sm:text-5xl">
             Minhas{' '}
             <span className="gradient-text">habilidades</span>
           </h2>
+
           <p className="mt-4 text-base leading-relaxed text-mutedfg sm:text-lg">
-            Tecnologias que uso para construir produto de ponta a ponta 
+            Tecnologias e ferramentas que utilizo para construir aplicações web, fluxos de dados e soluções voltadas para produto, operação e experiência.
           </p>
         </motion.div>
 
@@ -119,16 +121,22 @@ export default function Skills() {
                   <span className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-mutedfg/80">
                     {String(index + 1).padStart(2, '0')}
                   </span>
+
                   <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[color:var(--accent)]/13 text-[color:var(--accent)] ring-1 ring-inset ring-[color:var(--accent)]/25 transition-transform duration-300 group-hover:scale-105">
                     <group.CategoryIcon size={26} aria-hidden strokeWidth={2} />
                   </span>
+
                   <span className="hidden w-14 sm:block" aria-hidden />
                 </div>
+
                 <div className="space-y-1.5 px-2">
                   <h3 className="font-display text-xl font-black tracking-tight text-[color:var(--text)] sm:text-[1.35rem]">
                     {group.category}
                   </h3>
-                  <p className="text-sm font-medium leading-snug text-mutedfg">{group.subtitle}</p>
+
+                  <p className="text-sm font-medium leading-snug text-mutedfg">
+                    {group.subtitle}
+                  </p>
                 </div>
               </div>
 
@@ -171,11 +179,13 @@ export default function Skills() {
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-mutedfg">
                 Ao lado técnico
               </p>
+
               <h3 className="mt-3 font-display text-2xl font-black tracking-tight text-[color:var(--text)] sm:text-[1.8rem]">
                 Soft skills
               </h3>
+
               <p className="mt-2 max-w-2xl text-sm leading-relaxed text-mutedfg sm:text-base">
-                Mais do que desenvolver funcionalidades, foco em entender contexto, reduzir complexidade e manter entregas sustentáveis no longo prazo.
+                Além da parte técnica, valorizo comunicação clara, organização e entendimento do contexto antes da implementação. Busco manter entregas sustentáveis, código legível e alinhamento constante com produto e negócio.
               </p>
             </div>
           </div>

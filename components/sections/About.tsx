@@ -61,7 +61,7 @@ export default function About() {
             Sobre <span className="gradient-text">mim</span>
           </h2>
           <p className="text-lg text-mutedfg mb-12">
-            Full stack com forte lado de dados — produto na web e informação virando valor.
+            Desenvolvimento web e engenharia de dados conectando produto, experiência e informação confiável.
           </p>
         </motion.div>
 
@@ -75,13 +75,31 @@ export default function About() {
           >
             <div className="space-y-4 text-mutedfg leading-relaxed max-w-xl">
               <p>
-                Da interface ao processamento de dados, trabalho em soluções que tornam informação utilizável, acessível e estratégica.
+                Atuo entre desenvolvimento full stack e engenharia de dados, criando aplicações, APIs e fluxos que transformam informação em soluções utilizáveis.
               </p>
+
               <p>
-               Experiência prática atuando tanto na sustentação de dados críticos quanto na evolução contínua de aplicações.
+                Minha experiência passa tanto pela evolução contínua de produtos web quanto pela construção de pipelines e dados operacionais voltados para tomada de decisão.
               </p>
+
+              <p>
+                Ao longo dos últimos anos trabalhei com tecnologias como React, Next.js, PHP, JavaScript, SQL e ferramentas voltadas para processamento e visualização de dados.
+              </p>
+
+              <p>
+                Tenho facilidade em transitar entre diferentes áreas do desenvolvimento — desde interface e experiência do usuário até estruturação de backend, integrações e organização de dados.
+              </p>
+
+              <p>
+                Também participo diretamente da priorização de entregas, alinhamento técnico e comunicação com stakeholders, sempre buscando soluções que façam sentido tanto para negócio quanto para manutenção futura.
+              </p>
+
+              <p>
+                Gosto de construir produtos com identidade visual limpa, arquitetura organizada e foco em clareza, evitando complexidade desnecessária sem abrir mão de performance e escalabilidade.
+              </p>
+
               <p className="text-[color:var(--text)]">
-                Desenvolvimento orientado a aplicações úteis, dados confiáveis e arquitetura pensada para evolução.
+                Hoje, na Veolia, atuo com dados operacionais e pipelines; anteriormente, na Ultra Energia Brasil, trabalhei com desenvolvimento contínuo de aplicações web e soluções internas.
               </p>
             </div>
 
@@ -117,6 +135,7 @@ export default function About() {
                   priority
                 />
               </div>
+
               <div className="mt-4 flex items-center justify-center gap-2 text-mutedfg text-sm">
                 <MapPin size={18} className="text-[color:var(--accent)] shrink-0" aria-hidden />
                 Fortaleza, CE — Brasil
@@ -139,7 +158,10 @@ export default function About() {
                   <div className="font-display text-2xl sm:text-3xl font-bold text-[color:var(--text)]">
                     {s.value}
                   </div>
-                  <div className="mt-1 text-xs sm:text-sm text-mutedfg capitalize">{s.label}</div>
+
+                  <div className="mt-1 text-xs sm:text-sm text-mutedfg capitalize">
+                    {s.label}
+                  </div>
                 </motion.div>
               ))}
             </motion.div>
