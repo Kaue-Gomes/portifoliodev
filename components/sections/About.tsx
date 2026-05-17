@@ -15,7 +15,7 @@ import {
 const stats = [
   { value: '3+', label: 'anos de experiência' },
   { value: '2', label: 'empresas' },
-  { value: '6', label: 'projetos no GitHub' },
+  { value: '12', label: 'projetos no Concluídos' },
   { value: 'Fortaleza', label: 'CE, Brasil' },
 ]
 
@@ -75,16 +75,13 @@ export default function About() {
           >
             <div className="space-y-4 text-mutedfg leading-relaxed max-w-xl">
               <p>
-                Atuo entre desenvolvimento web e engenharia de dados: APIs, interfaces e fluxos
-                que sustentam decisões com dados confiáveis.
+                Da interface ao processamento de dados, trabalho em soluções que tornam informação utilizável, acessível e estratégica.
               </p>
               <p>
-                Na Veolia foco em dados operacionais e pipelines; antes, na Ultra Energia, em
-                entrega contínua de features web.
+               Experiência prática atuando tanto na sustentação de dados críticos quanto na evolução contínua de aplicações.
               </p>
               <p className="text-[color:var(--text)]">
-                Comunicação clara com stakeholders e priorização pragmática fazem parte do meu
-                dia a dia — sem métricas mascaradas no portfólio.
+                Desenvolvimento orientado a aplicações úteis, dados confiáveis e arquitetura pensada para evolução.
               </p>
             </div>
 

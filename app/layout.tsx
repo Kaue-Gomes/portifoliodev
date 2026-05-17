@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: 'Kauê Gomes — Full Stack & Dados',
   description:
-    'Construo aplicações web e pipelines que transformam informação em produto. Portfólio de Kauê Gomes — Full Stack e Engenheiro de Dados.',
+    'Desenvolvimento orientado a aplicações úteis, dados confiáveis e arquitetura pensada para evolução. Portfólio de Kauê Gomes — Full Stack e Engenheiro de Dados.',
   keywords: [
     'desenvolvedor',
     'full stack',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     title: 'Kauê Gomes — Full Stack & Dados',
     description:
-      'Construo aplicações web e pipelines que transformam informação em produto.',
+      'Desenvolvimento orientado a aplicações úteis, dados confiáveis e arquitetura pensada para evolução.',
     siteName: 'Kauê Gomes',
     images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Kauê Gomes — Full Stack & Dados' }],
   },
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Kauê Gomes — Full Stack & Dados',
     description:
-      'Construo aplicações web e pipelines que transformam informação em produto.',
+      'Desenvolvimento orientado a aplicações úteis, dados confiáveis e arquitetura pensada para evolução.',
     images: ['/og-image.png'],
   },
   manifest: '/site.webmanifest',

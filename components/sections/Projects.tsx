@@ -334,7 +334,7 @@ export default function Projects() {
             Meus <span className="gradient-text">projetos</span>
           </h2>
           <p className="text-lg text-mutedfg mb-8">
-            Destaque editorial + projetos rápidos. Filtre por stack antes de explorar cada card.
+           Construção ágil sem abrir mão de estrutura, legibilidade e consistência visual.
           </p>
         </motion.div>
 

@@ -77,8 +77,7 @@ export default function Hero() {
             variants={heroItem}
             className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-mutedfg sm:text-xl"
           >
-            Construo aplicações web e pipelines que transformam informação em produto.
-            Engenheiro de Dados na Veolia.
+            Da interface ao processamento de dados, trabalho em soluções que tornam informação utilizável, acessível e estratégica.
           </motion.p>
 
           <motion.div

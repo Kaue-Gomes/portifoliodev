@@ -94,8 +94,7 @@ export default function Skills() {
             <span className="gradient-text">habilidades</span>
           </h2>
           <p className="mt-4 text-base leading-relaxed text-mutedfg sm:text-lg">
-            Tecnologias que uso para construir produto de ponta a ponta — leitura direta em tags grandes,
-            sem pontuações genéricas.
+            Tecnologias que uso para construir produto de ponta a ponta 
           </p>
         </motion.div>
 
@@ -176,8 +175,7 @@ export default function Skills() {
                 Soft skills
               </h3>
               <p className="mt-2 max-w-2xl text-sm leading-relaxed text-mutedfg sm:text-base">
-                Como eu colaboro: clareza, ritmo sustentável e responsabilidade com o problema — sempre em
-                tags discretas para não competir visualmente com a stack.
+                Mais do que desenvolver funcionalidades, foco em entender contexto, reduzir complexidade e manter entregas sustentáveis no longo prazo.
               </p>
             </div>
           </div>
