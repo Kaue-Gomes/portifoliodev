@@ -57,11 +57,11 @@ const projectsData: readonly Project[] = [
     description:
       'Ecommerce com Checkout completo com Stripe, autenticação JWT, painel admin com estoque e histórico.',
     image: '/projects/shopmy.png',
-    technologies: ['React', 'Next.js', 'TypeScript', 'Stripe', 'MongoDB'],
+    technologies: ['React', 'Next.js', 'TypeScript', 'Stripe', 'MongoDB', 'Neon'],
     filters: ['Full stack'],
     github: 'https://github.com/Kaue-Gomes/shopmy',
-    demo: undefined,
-    hideDemo: true,
+    demo: 'https://shopmy-theta.vercel.app/',
+    hideDemo: false,
     hasCredentials: false,
   },
   {
