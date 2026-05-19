@@ -143,43 +143,45 @@ function FeaturedProjectCard({ onCredentials, ...project }: FeaturedProps) {
       {...fadeLayoutTransition}
       transition={enterTransition}
       className={cn(
-        'group relative aspect-video overflow-hidden rounded-2xl',
+        'group relative overflow-hidden rounded-2xl md:aspect-video',
         'ring-1 ring-inset ring-black/10 dark:ring-white/10',
         'shadow-[0_22px_50px_-32px_rgba(99,102,241,0.55)] hover:shadow-[0_26px_60px_-34px_rgba(99,102,241,0.65)]',
         'bg-[color:var(--surface)] focus-within:ring-2 focus-within:ring-[color:var(--accent)]/40'
       )}
     >
-      <div className="relative h-full w-full overflow-hidden">
-        <Image
-          src={project.image}
-          alt={`${project.title} — captura do projeto`}
-          fill
-          sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-cover transition-transform duration-500 ease-out will-change-transform group-hover:scale-[1.04] group-focus-within:scale-[1.04]"
-          priority={false}
-        />
+      <div className="relative flex h-full w-full flex-col overflow-hidden md:block">
+        <div className="relative aspect-[16/10] w-full overflow-hidden md:absolute md:inset-0 md:aspect-auto">
+          <Image
+            src={project.image}
+            alt={`${project.title} — captura do projeto`}
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover transition-transform duration-500 ease-out will-change-transform group-hover:scale-[1.04] group-focus-within:scale-[1.04]"
+            priority={false}
+          />
+        </div>
 
-        <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100 bg-gradient-to-t from-black/90 via-neutral-950/78 to-neutral-950/55 backdrop-blur-[2px]" />
+        <div className="pointer-events-none absolute inset-0 hidden opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100 md:block bg-gradient-to-t from-black/90 via-neutral-950/78 to-neutral-950/55 backdrop-blur-[2px]" />
 
         <div
           className={cn(
-            'absolute inset-0 flex flex-col justify-center gap-5 p-8 md:p-10',
-            'opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100',
-            'text-zinc-100 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto'
+            'flex flex-col gap-4 p-5 sm:p-6 md:absolute md:inset-0 md:justify-center md:gap-5 md:p-10',
+            'md:opacity-0 md:transition-opacity md:duration-300 md:group-hover:opacity-100 md:group-focus-within:opacity-100',
+            'text-[color:var(--text)] md:text-zinc-100 md:pointer-events-none md:group-hover:pointer-events-auto md:group-focus-within:pointer-events-auto'
           )}
         >
-          <div className="max-w-xl space-y-3">
-            <h3 className="font-display text-2xl md:text-[1.75rem] font-bold tracking-tight text-neutral-50">
+          <div className="max-w-xl space-y-2 md:space-y-3">
+            <h3 className="font-display text-xl md:text-[1.75rem] font-bold tracking-tight text-[color:var(--text)] md:text-neutral-50">
               {project.title}
             </h3>
-            <p className="text-sm md:text-[0.9375rem] leading-relaxed text-zinc-300">{project.description}</p>
+            <p className="text-sm md:text-[0.9375rem] leading-relaxed text-mutedfg md:text-zinc-300">{project.description}</p>
           </div>
 
-          <div className="flex flex-wrap gap-2 justify-start">
+          <div className="flex max-h-20 flex-wrap gap-2 justify-start overflow-hidden md:max-h-none">
             {project.technologies.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border border-white/20 bg-black/35 px-2.5 py-1 text-xs font-medium uppercase tracking-wide text-zinc-200"
+                className="rounded-full border border-accent/35 bg-[color:var(--bg)] px-2.5 py-1 text-xs font-medium uppercase tracking-wide text-[color:var(--text)] md:border-white/20 md:bg-black/35 md:text-zinc-200"
               >
                 {tag}
               </span>
@@ -192,7 +194,7 @@ function FeaturedProjectCard({ onCredentials, ...project }: FeaturedProps) {
                 href={project.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-zinc-200/55 bg-neutral-950/66 px-4 py-2.5 text-sm font-semibold text-zinc-50 shadow-sm transition-colors hover:bg-[color:var(--accent)] hover:border-[color:var(--accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:ring-[color:var(--accent)]"
+                className="inline-flex items-center gap-2 rounded-lg border border-accent/35 bg-[color:var(--bg)] px-3.5 py-2 text-sm font-semibold text-[color:var(--text)] shadow-sm transition-colors hover:bg-[color:var(--accent)] hover:text-white hover:border-[color:var(--accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:ring-[color:var(--accent)] md:border-zinc-200/55 md:bg-neutral-950/66 md:px-4 md:py-2.5 md:text-zinc-50"
               >
                 Ver demo <ExternalLink size={16} aria-hidden />
               </a>
@@ -201,7 +203,7 @@ function FeaturedProjectCard({ onCredentials, ...project }: FeaturedProps) {
               <button
                 type="button"
                 onClick={onCredentials}
-                className="inline-flex items-center gap-2 rounded-lg border border-zinc-200/55 bg-transparent px-4 py-2.5 text-sm font-semibold text-zinc-100 transition-colors hover:border-[color:var(--accent)] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)]"
+                className="inline-flex items-center gap-2 rounded-lg border border-accent/35 bg-transparent px-3.5 py-2 text-sm font-semibold text-[color:var(--text)] transition-colors hover:border-[color:var(--accent)] hover:text-[color:var(--accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] md:border-zinc-200/55 md:px-4 md:py-2.5 md:text-zinc-100 md:hover:text-white"
               >
                 Credenciais <Key size={16} aria-hidden />
               </button>
@@ -211,7 +213,7 @@ function FeaturedProjectCard({ onCredentials, ...project }: FeaturedProps) {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-zinc-200/55 bg-transparent px-4 py-2.5 text-sm font-semibold text-zinc-100 transition-colors hover:border-[color:var(--accent)] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)]"
+                className="inline-flex items-center gap-2 rounded-lg border border-accent/35 bg-transparent px-3.5 py-2 text-sm font-semibold text-[color:var(--text)] transition-colors hover:border-[color:var(--accent)] hover:text-[color:var(--accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] md:border-zinc-200/55 md:px-4 md:py-2.5 md:text-zinc-100 md:hover:text-white"
               >
                 Código <Github size={16} aria-hidden />
               </a>
