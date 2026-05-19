@@ -77,7 +77,8 @@ export async function POST(request: NextRequest) {
     await transporter.sendMail(mailOptions)
 
     return NextResponse.json({ message: 'Email enviado com sucesso!' }, { status: 200 })
-  } catch {
+  } catch (error) {
+    console.error('Erro ao enviar email pelo formulário de contato:', error)
     return NextResponse.json({ error: 'Não foi possível enviar agora.' }, { status: 500 })
   }
 }

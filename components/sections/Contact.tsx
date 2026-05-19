@@ -24,6 +24,7 @@ export default function Contact() {
     message: '',
   })
   const [submitUi, setSubmitUi] = useState<SubmitUiStatus>('idle')
+  const [submitError, setSubmitError] = useState('')
 
   useEffect(() => {
     if (submitUi !== 'sent') return
@@ -41,6 +42,7 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setSubmitUi('sending')
+    setSubmitError('')
 
     try {
       const response = await fetch('/api/send-email', {
@@ -53,9 +55,12 @@ export default function Contact() {
         setSubmitUi('sent')
         setFormData({ name: '', email: '', subject: '', message: '' })
       } else {
+        const payload = await response.json().catch(() => null)
+        setSubmitError(payload?.error || 'Não foi possível enviar agora.')
         setSubmitUi('error')
       }
     } catch {
+      setSubmitError('Não foi possível conectar ao serviço de email.')
       setSubmitUi('error')
     }
   }
@@ -194,7 +199,7 @@ export default function Contact() {
 
                 {submitUi === 'error' ? (
                   <p className="text-sm text-red-600 dark:text-red-400" role="alert">
-                    Não foi possível enviar agora. Tente de novo ou use o email ao lado.
+                    {submitError || 'Não foi possível enviar agora.'} Tente de novo ou use o email ao lado.
                   </p>
                 ) : null}
               </form>
