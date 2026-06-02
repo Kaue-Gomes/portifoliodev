@@ -181,7 +181,7 @@ function FeaturedProjectCard({ onCredentials, ...project }: FeaturedProps) {
             {project.technologies.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border border-indigo-200 bg-indigo-50 px-2.5 py-1 text-xs font-medium uppercase tracking-wide text-indigo-950 dark:border-white/15 dark:bg-white/10 dark:text-zinc-100 md:border-white/25 md:bg-white/15 md:text-zinc-100"
+                className="rounded-full border border-indigo-700 bg-indigo-950 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-white shadow-sm dark:border-indigo-300/50 dark:bg-indigo-100 dark:text-indigo-950 md:border-indigo-200 md:bg-indigo-50 md:text-indigo-950"
               >
                 {tag}
               </span>
@@ -194,7 +194,7 @@ function FeaturedProjectCard({ onCredentials, ...project }: FeaturedProps) {
                 href={project.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-transparent bg-[color:var(--accent)] px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:ring-[color:var(--accent)] md:bg-white md:px-4 md:py-2.5 md:text-neutral-950 md:hover:bg-zinc-200 md:hover:text-neutral-950"
+                className="inline-flex items-center gap-2 rounded-lg border border-transparent bg-indigo-950 px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-indigo-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:ring-[color:var(--accent)] md:bg-white md:px-4 md:py-2.5 md:text-neutral-950 md:hover:bg-zinc-200 md:hover:text-neutral-950"
               >
                 Ver demo <ExternalLink size={16} aria-hidden />
               </a>
@@ -203,7 +203,7 @@ function FeaturedProjectCard({ onCredentials, ...project }: FeaturedProps) {
               <button
                 type="button"
                 onClick={onCredentials}
-                className="inline-flex items-center gap-2 rounded-lg border border-accent/35 bg-transparent px-3.5 py-2 text-sm font-semibold text-[color:var(--text)] transition-colors hover:border-[color:var(--accent)] hover:text-[color:var(--accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] md:border-zinc-200/55 md:px-4 md:py-2.5 md:text-zinc-100 md:hover:text-white"
+                className="inline-flex items-center gap-2 rounded-lg border border-indigo-950 bg-white px-3.5 py-2 text-sm font-semibold text-indigo-950 shadow-sm transition-colors hover:bg-indigo-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] dark:border-indigo-200 dark:bg-indigo-100 dark:text-indigo-950 dark:hover:bg-white md:border-zinc-200 md:bg-transparent md:px-4 md:py-2.5 md:text-zinc-100 md:hover:bg-white md:hover:text-neutral-950"
               >
                 Credenciais <Key size={16} aria-hidden />
               </button>
@@ -213,7 +213,7 @@ function FeaturedProjectCard({ onCredentials, ...project }: FeaturedProps) {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-accent/35 bg-transparent px-3.5 py-2 text-sm font-semibold text-[color:var(--text)] transition-colors hover:border-[color:var(--accent)] hover:text-[color:var(--accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] md:border-zinc-200/55 md:px-4 md:py-2.5 md:text-zinc-100 md:hover:text-white"
+                className="inline-flex items-center gap-2 rounded-lg border border-indigo-950 bg-white px-3.5 py-2 text-sm font-semibold text-indigo-950 shadow-sm transition-colors hover:bg-indigo-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] dark:border-indigo-200 dark:bg-indigo-100 dark:text-indigo-950 dark:hover:bg-white md:border-zinc-200 md:bg-transparent md:px-4 md:py-2.5 md:text-zinc-100 md:hover:bg-white md:hover:text-neutral-950"
               >
                 Código <Github size={16} aria-hidden />
               </a>
@@ -274,7 +274,7 @@ function CompactProjectCard(project: CompactProps) {
         {project.technologies.map((tag) => (
           <span
             key={tag}
-            className="rounded-full border border-accent/35 bg-[color:var(--bg)] px-2.5 py-1 text-xs font-medium text-[color:var(--text)]"
+            className="rounded-full border border-indigo-200 bg-indigo-50 px-2.5 py-1 text-xs font-semibold text-indigo-950 shadow-sm dark:border-indigo-300/35 dark:bg-indigo-100 dark:text-indigo-950"
           >
             {tag}
           </span>
@@ -287,7 +287,7 @@ function CompactProjectCard(project: CompactProps) {
             href={project.demo}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[color:var(--accent)] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] rounded-sm px-0.5"
+            className="inline-flex items-center gap-1.5 rounded-md bg-indigo-950 px-2.5 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-indigo-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] dark:bg-indigo-100 dark:text-indigo-950 dark:hover:bg-white"
           >
             Demo <ExternalLink size={15} aria-hidden />
           </a>
@@ -297,7 +297,7 @@ function CompactProjectCard(project: CompactProps) {
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-sm px-0.5 text-sm font-semibold text-[color:var(--text)] hover:text-[color:var(--accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)]"
+            className="inline-flex items-center gap-1.5 rounded-md border border-indigo-950 bg-white px-2.5 py-1.5 text-sm font-semibold text-indigo-950 shadow-sm transition-colors hover:bg-indigo-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] dark:border-indigo-200 dark:bg-indigo-100 dark:text-indigo-950 dark:hover:bg-white"
           >
             Código <Github size={15} aria-hidden />
           </a>
