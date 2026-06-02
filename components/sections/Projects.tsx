@@ -181,7 +181,7 @@ function FeaturedProjectCard({ onCredentials, ...project }: FeaturedProps) {
             {project.technologies.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border border-accent/35 bg-[color:var(--bg)] px-2.5 py-1 text-xs font-medium uppercase tracking-wide text-[color:var(--text)] md:border-white/20 md:bg-black/35 md:text-zinc-200"
+                className="rounded-full border border-indigo-200 bg-indigo-50 px-2.5 py-1 text-xs font-medium uppercase tracking-wide text-indigo-950 dark:border-white/15 dark:bg-white/10 dark:text-zinc-100 md:border-white/25 md:bg-white/15 md:text-zinc-100"
               >
                 {tag}
               </span>
@@ -194,7 +194,7 @@ function FeaturedProjectCard({ onCredentials, ...project }: FeaturedProps) {
                 href={project.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-accent/35 bg-[color:var(--bg)] px-3.5 py-2 text-sm font-semibold text-[color:var(--text)] shadow-sm transition-colors hover:bg-[color:var(--accent)] hover:text-white hover:border-[color:var(--accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:ring-[color:var(--accent)] md:border-zinc-200/55 md:bg-neutral-950/66 md:px-4 md:py-2.5 md:text-zinc-50"
+                className="inline-flex items-center gap-2 rounded-lg border border-transparent bg-[color:var(--accent)] px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:ring-[color:var(--accent)] md:bg-white md:px-4 md:py-2.5 md:text-neutral-950 md:hover:bg-zinc-200 md:hover:text-neutral-950"
               >
                 Ver demo <ExternalLink size={16} aria-hidden />
               </a>
@@ -297,7 +297,7 @@ function CompactProjectCard(project: CompactProps) {
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-sm px-0.5 text-sm font-semibold text-white hover:text-[color:var(--accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)]"
+            className="inline-flex items-center gap-1.5 rounded-sm px-0.5 text-sm font-semibold text-[color:var(--text)] hover:text-[color:var(--accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)]"
           >
             Código <Github size={15} aria-hidden />
           </a>

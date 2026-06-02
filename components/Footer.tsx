@@ -33,11 +33,13 @@ export default function Footer() {
           <div className="md:col-span-2">
             <motion.div variants={staggerItem}>
               <div className="flex items-center gap-2 mb-4">
-                <img
-                  src="/images/logolilas.png"
-                  alt="Kauê Gomes"
-                  className="h-11 w-11 rounded-lg object-contain"
-                />
+                <span className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-lg">
+                  <img
+                    src="/images/logolilas.png"
+                    alt="Kauê Gomes"
+                    className="h-full w-full scale-[1.22] object-contain"
+                  />
+                </span>
                 <span className="font-display text-xl font-bold text-[color:var(--text)]">
                   kauegomes
                 </span>

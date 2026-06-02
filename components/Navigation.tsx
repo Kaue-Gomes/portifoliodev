@@ -102,11 +102,13 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <a href="#home" className="flex items-center gap-2 group">
-            <img
-              src="/images/logolilas.png"
-              alt="Kauê Gomes"
-              className="h-11 w-11 rounded-lg object-contain shadow-sm"
-            />
+            <span className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-lg shadow-sm">
+              <img
+                src="/images/logolilas.png"
+                alt="Kauê Gomes"
+                className="h-full w-full scale-[1.22] object-contain"
+              />
+            </span>
             <span className="font-display text-lg font-bold text-[color:var(--text)]">
               kauegomes
             </span>
