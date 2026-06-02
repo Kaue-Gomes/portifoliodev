@@ -36,7 +36,7 @@ export default function Footer() {
                 <img
                   src="/images/logolilas.png"
                   alt="Kauê Gomes"
-                  className="h-9 w-9 rounded-lg object-contain"
+                  className="h-11 w-11 rounded-lg object-contain"
                 />
                 <span className="font-display text-xl font-bold text-[color:var(--text)]">
                   kauegomes

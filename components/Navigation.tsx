@@ -105,7 +105,7 @@ export default function Navigation() {
             <img
               src="/images/logolilas.png"
               alt="Kauê Gomes"
-              className="h-9 w-9 rounded-lg object-contain shadow-sm"
+              className="h-11 w-11 rounded-lg object-contain shadow-sm"
             />
             <span className="font-display text-lg font-bold text-[color:var(--text)]">
               kauegomes
