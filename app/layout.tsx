@@ -53,10 +53,14 @@ export const metadata: Metadata = {
       'Desenvolvimento orientado a aplicações úteis, dados confiáveis e arquitetura pensada para evolução.',
     images: ['/og-image.png'],
   },
-  manifest: '/site.webmanifest',
+  manifest: '/images/favicon_io/site.webmanifest',
   icons: {
-    icon: [{ url: '/icon.png', sizes: '512x512', type: 'image/png' }],
-    apple: [{ url: '/icon.png', sizes: '512x512', type: 'image/png' }],
+    icon: [
+      { url: '/images/favicon_io/favicon.ico', type: 'image/x-icon' },
+      { url: '/images/favicon_io/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/images/favicon_io/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: [{ url: '/images/favicon_io/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
   },
 }
 
