@@ -79,9 +79,9 @@ const projectsData: readonly Project[] = [
       'Dompdf',
       'Apache',],
     filters: ['Full stack'],
-    demo: 'https://codesky.com.br/',
+    demo: 'https://codesky.com.br/demolaboratorio',
     hideDemo: false,
-    hasCredentials: true,
+    hasCredentials: false,
   },
   {
     kind: 'compact',
