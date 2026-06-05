@@ -121,7 +121,7 @@ const projectsData: readonly Project[] = [
     Icon: Newspaper,
     github: 'https://github.com/Kaue-Gomes/Blog',
     demo: 'https://kaue-gomes.github.io/Blog/',
-    hideDemo: false,
+    hideDemo: true,
   },
 ] as const
 
@@ -177,7 +177,7 @@ function FeaturedProjectCard({ onCredentials, ...project }: FeaturedProps) {
             <p className="text-sm md:text-[0.9375rem] leading-relaxed text-mutedfg md:text-zinc-300">{project.description}</p>
           </div>
 
-          <div className="flex max-h-20 flex-wrap gap-2 justify-start overflow-hidden md:max-h-none">
+          <div className="flex flex-wrap gap-2 justify-start">
             {project.technologies.map((tag) => (
               <span
                 key={tag}
@@ -194,7 +194,7 @@ function FeaturedProjectCard({ onCredentials, ...project }: FeaturedProps) {
                 href={project.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-transparent bg-indigo-950 px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-indigo-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:ring-[color:var(--accent)] md:bg-white md:px-4 md:py-2.5 md:text-neutral-950 md:hover:bg-zinc-200 md:hover:text-neutral-950"
+                className="inline-flex items-center gap-2 rounded-lg border border-transparent bg-[color:var(--accent)] px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--bg)] md:px-4 md:py-2.5"
               >
                 Ver demo <ExternalLink size={16} aria-hidden />
               </a>
@@ -287,7 +287,7 @@ function CompactProjectCard(project: CompactProps) {
             href={project.demo}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-md bg-indigo-950 px-2.5 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-indigo-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] dark:bg-indigo-100 dark:text-indigo-950 dark:hover:bg-white"
+            className="inline-flex items-center gap-1.5 rounded-md bg-[color:var(--accent)] px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--bg)]"
           >
             Demo <ExternalLink size={15} aria-hidden />
           </a>
