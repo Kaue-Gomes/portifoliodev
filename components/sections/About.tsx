@@ -15,7 +15,7 @@ import {
 const stats = [
   { value: '3+', label: 'anos de experiência' },
   { value: '2', label: 'empresas' },
-  { value: '12', label: 'projetos no Concluídos' },
+  { value: '12', label: 'projetos cncluídos' },
   { value: 'Fortaleza', label: 'CE, Brasil' },
 ]
 
