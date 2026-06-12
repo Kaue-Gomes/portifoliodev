@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useMemo, useState } from 'react'
 import type { LucideIcon } from 'lucide-react'
-import { CloudSun, ExternalLink, Github, Key, Newspaper, Sparkles } from 'lucide-react'
+import { CloudSun, ExternalLink, Github, Key, Newspaper, Sparkles, Wallet } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import CredentialsModal from '@/components/ui/CredentialsModal'
@@ -84,6 +84,19 @@ const projectsData: readonly Project[] = [
     demo: 'https://nexux-insights.vercel.app/',
     hideDemo: false,
     hasCredentials: false,
+  },
+  {
+    kind: 'compact',
+    title: 'Assistente Pessoal',
+    headline: 'Gestão pessoal e financeira em um só lugar.',
+    description:
+      'Plataforma completa de gestão pessoal e financeira, controle de receitas e gastos, analytics, metas, tarefas e projeções financeiras.',
+    technologies: ['PHP 8', 'MySQL', 'Bootstrap', 'JavaScript', 'PDO', 'Composer', 'Dompdf', 'Apache'],
+    filters: ['Full stack'],
+    thumbnail: '/projects/mygestor.png',
+    Icon: Wallet,
+    demo: 'https://codesky.com.br/demolaboratorio',
+    hideDemo: false,
   },
   {
     kind: 'compact',
