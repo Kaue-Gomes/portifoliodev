@@ -66,25 +66,6 @@ const projectsData: readonly Project[] = [
   },
   {
     kind: 'featured',
-    title: 'Assistente Pessoal',
-    description:
-      'Plataforma completa de gestão pessoal e financeira, controle de receitas e gastos, analytics, metas, tarefas e projeções financeiras.',
-    image: '/projects/mygestor.png',
-    technologies: [ 'PHP 8',
-      'MySQL',
-      'Bootstrap',
-      'JavaScript',
-      'PDO',
-      'Composer',
-      'Dompdf',
-      'Apache',],
-    filters: ['Full stack'],
-    demo: 'https://codesky.com.br/demolaboratorio',
-    hideDemo: false,
-    hasCredentials: false,
-  },
-  {
-    kind: 'featured',
     title: 'Nexus Insight',
     description:
       'Dashboard empresarial com KPIs, projetos, tarefas, equipes, lembretes e relatórios.',
