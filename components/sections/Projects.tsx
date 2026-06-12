@@ -84,6 +84,27 @@ const projectsData: readonly Project[] = [
     hasCredentials: false,
   },
   {
+    kind: 'featured',
+    title: 'Nexus Insight',
+    description:
+      'Dashboard empresarial com KPIs, projetos, tarefas, equipes, lembretes e relatórios.',
+    image: '/projects/nexusinsights.png',
+    technologies: [
+      'React 19',
+      'TypeScript',
+      'TanStack Start',
+      'Supabase',
+      'Tailwind',
+      'shadcn/ui',
+      'Recharts',
+    ],
+    filters: ['Full stack', 'Dados'],
+    github: 'https://github.com/Kaue-Gomes/Nexux-insights',
+    demo: 'https://nexux-insights.vercel.app/',
+    hideDemo: false,
+    hasCredentials: false,
+  },
+  {
     kind: 'compact',
     title: 'NexusIA',
     headline: 'Landing para apresentar uma nova IA ao mercado.',
